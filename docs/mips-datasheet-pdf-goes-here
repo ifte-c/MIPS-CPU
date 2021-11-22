@@ -1,0 +1,13 @@
+A data-sheet for your CPU, consisting of at most 4 A4 pages. This data-sheet should cover:
+
+- The overall architecture of your CPU.
+
+- At least one diagram of your CPU's architecture.
+
+- Design decisions taken when implementing the CPU.
+
+- The approach taken to testing CPUs.
+
+- At least one diagram or flow-chart describing your testing flow or approach.
+
+- Area and timing summary for the "Cyclone IV E ‘Auto’" variant in Quartus (same as used in the EE1 "CPU" project).

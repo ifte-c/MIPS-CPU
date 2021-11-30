@@ -5,12 +5,10 @@ module mips_cpu_pc(
     output logic[31:0] addr_out
 );
 
-    logic[31:0] addr_inc
-
-    always_comb begin
-        addr_inc = addr + 4;
-        addr = (instr[25:0]<<2) + (addr_next[31:28]<<28)
+    always_ff @(posedge clk) begin
         if (instr[31:26] == 000010) begin // this implements jump instruction maybe idek
-            addr_out = addr
+            addr <= { 4'b0000, instr[25:0], 2'b00 } + { (addr+4)[31:28], 28'b0000000000000000000000000000 };
         end
     end
+
+endmodule

@@ -1,0 +1,43 @@
+$date
+	Wed Dec  1 17:06:45 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Mux2_32_tb $end
+$var wire 32 ! out [31:0] $end
+$var reg 32 " input_0 [31:0] $end
+$var reg 32 # input_1 [31:0] $end
+$var reg 1 $ select $end
+$scope module dut $end
+$var wire 32 % input_0 [31:0] $end
+$var wire 32 & input_1 [31:0] $end
+$var wire 1 $ select $end
+$var reg 32 ' out [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11111111010001001111111101000100 '
+b1 &
+b11111111010001001111111101000100 %
+0$
+b1 #
+b11111111010001001111111101000100 "
+b11111111010001001111111101000100 !
+$end
+#5
+b1 !
+b1 '
+1$
+b110011101010100100010011111111 "
+b110011101010100100010011111111 %
+#10
+b110011101010100100010011111111 !
+b110011101010100100010011111111 '
+0$
+#15

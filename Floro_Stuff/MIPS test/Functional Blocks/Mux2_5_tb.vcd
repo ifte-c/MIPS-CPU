@@ -1,0 +1,43 @@
+$date
+	Wed Dec  1 20:24:56 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Mux2_5_tb $end
+$var wire 5 ! out [4:0] $end
+$var reg 5 " input_0 [4:0] $end
+$var reg 5 # input_1 [4:0] $end
+$var reg 1 $ select $end
+$scope module dut $end
+$var wire 5 % input_0 [4:0] $end
+$var wire 5 & input_1 [4:0] $end
+$var wire 1 $ select $end
+$var reg 5 ' out [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11011 '
+b1 &
+b11011 %
+0$
+b1 #
+b11011 "
+b11011 !
+$end
+#5
+b1 !
+b1 '
+1$
+b10101 "
+b10101 %
+#10
+b10101 !
+b10101 '
+0$
+#15

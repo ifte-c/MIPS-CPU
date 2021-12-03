@@ -8,14 +8,15 @@ module add_sub_logic_tb();
     logic[31:0] add_sub_out;
     logic[3:0] branch_conditions;
 
-    assign op1 = 420;
-    assign op2 = 69;
+    assign op1 = 0;
+    assign op2 = 9;
 
     initial begin
         opcode = 6'b001001;
         funct = 6'b000000;
         #2;  
-        assert(op1 + op2 == add_sub_out) else $fatal(1, "addiu is wrong.");
+        $display ("branch_conditions = %b", branch_conditions);
+        assert(op1 + op2 == add_sub_out) else $fatal(1, "addiu is wrong."); 
         /*---------------------------------------------------------------------*/
         opcode = 6'b000000;
         funct = 6'b100001;

@@ -68,7 +68,7 @@ module add_sub_logic(
         op1 == 0 ? 3'b010 :
         op1 > 0 ? 3'b100 ; */
 
-        if (op1 < 1)
+        if ($signed(op1) < 0)
             branch_conditions[2:0] = 3'b001;
         else if (op1 == 0) begin
             branch_conditions[2:0] = 3'b010;

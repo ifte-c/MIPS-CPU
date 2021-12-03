@@ -5,8 +5,8 @@ module IR(
     input logic reset,
     output logic[5:0] op,
     output logic[4:0] rs,
-    output logic[4:0] rd,
     output logic[4:0] rt,
+    output logic[4:0] rd,
     output logic[4:0] shift,
     output logic[5:0] func,
     output logic[15:0] i,
@@ -18,8 +18,8 @@ module IR(
     //temporary values due to always_comb conflict with bit array calls
     logic[5:0] t_op=instr[31:26];
     logic[4:0] t_rs=instr[25:21];
-    logic[4:0] t_rd=instr[20:16];
-    logic[4:0] t_rt=instr[15:11];
+    logic[4:0] t_rt=instr[20:16];
+    logic[4:0] t_rd=instr[15:11];
     logic[4:0] t_shift=instr[10:6];
     logic[5:0] t_func=instr[5:0];
     logic[15:0] t_i=instr[15:0];

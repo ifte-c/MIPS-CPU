@@ -1,5 +1,6 @@
-module sign_ex(
+module extend_16(
     input logic[15:0] in,
+    input logic zero_sign,
     output logic[31:0] out
 );
 
@@ -9,7 +10,7 @@ module sign_ex(
     //constant selects not available in always_comb
 
     always_comb begin
-        if( tmp==1) begin
+        if( (tmp==1)&&(zero_sign==0)) begin
             out={16'hffff,in};
         end
         else begin

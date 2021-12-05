@@ -1,0 +1,114 @@
+$date
+	Sun Dec  5 18:14:11 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module PC_tb $end
+$var wire 32 ! cur_pc_val [31:0] $end
+$var reg 1 " clk $end
+$var reg 1 # instr_type $end
+$var reg 32 $ nxt_pc_val [31:0] $end
+$var reg 1 % pc_ctrl $end
+$var reg 1 & pc_write_cond $end
+$var reg 1 ' reset $end
+$scope module dut $end
+$var wire 1 " clk $end
+$var wire 1 # instr_type $end
+$var wire 32 ( nxt_pc_val [31:0] $end
+$var wire 1 % pc_ctrl $end
+$var wire 1 & pc_write_cond $end
+$var wire 1 ' reset $end
+$var reg 32 ) BoJ [31:0] $end
+$var reg 1 * BoJ_flag $end
+$var reg 3 + counter [2:0] $end
+$var reg 32 , cur_pc_val [31:0] $end
+$var reg 32 - pc_val [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b100 -
+b0 ,
+bx +
+x*
+bx )
+b100 (
+1'
+0&
+1%
+b100 $
+x#
+0"
+b0 !
+$end
+#10
+b0 +
+b0 )
+b0 -
+1"
+#15
+0'
+#20
+b100 !
+b100 ,
+b100 -
+0"
+#30
+1"
+0%
+#40
+0"
+#50
+1"
+b10100 $
+b10100 (
+1&
+1%
+#60
+1*
+b10100 )
+0"
+#70
+1"
+b1000 $
+b1000 (
+0&
+#80
+b1000 !
+b1000 ,
+b1000 -
+b1 +
+0"
+#90
+1"
+0#
+0%
+#100
+b10 +
+0"
+#110
+1"
+#120
+b10100 !
+b10100 ,
+0*
+b10100 -
+b0 +
+0"
+#130
+1"
+b11000 $
+b11000 (
+1%
+#140
+b11000 !
+b11000 ,
+b11000 -
+0"
+#150
+1"

@@ -7,7 +7,6 @@ module ALU_tb();
     logic[31:0] ALU_out;
     logic[31:0] ALU_lo;
     logic[31:0] ALU_hi;
-    logic[2:0] bflag;
 
     initial begin
         assign rs=10;
@@ -74,44 +73,50 @@ module ALU_tb();
         assign rs=12;
         assign rt=12;
         #5 assert(ALU_out==1) else $fatal(1,"equals failed %d",ALU_out);
-        #5 assert(bflag==0) else $fatal(1,"equals failed %d",bflag);
         assign rt=13;
         #5 assert(ALU_out==0) else $fatal(1,"equals failed %d",ALU_out);
         assign ALU_ctrl=16;
         assign rs=12;
         #5 assert(ALU_out==1) else $fatal(1,"gez failed %d",ALU_out);
-        #5 assert(bflag==1) else $fatal(1,"gez failed %d",bflag);
         assign rs=-1;
         #5 assert(ALU_out==0) else $fatal(1,"gez failed %d",ALU_out);
         assign ALU_ctrl=17;
         assign rs=12;
         #5 assert(ALU_out==1) else $fatal(1,"gz failed %d",ALU_out);
-        #5 assert(bflag==2) else $fatal(1,"gz failed %d",bflag);
         assign rs=0;
         #5 assert(ALU_out==0) else $fatal(1,"gz failed %d",ALU_out);
         assign ALU_ctrl=18;
         assign rs=-12;
         #5 assert(ALU_out==1) else $fatal(1,"lez failed %d",ALU_out);
-        #5 assert(bflag==3) else $fatal(1,"lez failed %d",bflag);
         assign rs=1;
         #5 assert(ALU_out==0) else $fatal(1,"lez failed %d",ALU_out);
         assign ALU_ctrl=19;
         assign rs=-12;
         #5 assert(ALU_out==1) else $fatal(1,"lz failed %d",ALU_out);
-        #5 assert(bflag==4) else $fatal(1,"lz failed %d",bflag);
         assign rs=0;
         #5 assert(ALU_out==0) else $fatal(1,"lz failed %d",ALU_out);
         assign ALU_ctrl=20;
+        assign rs=-20;
+        assign rt=12;
+        #5 assert(ALU_out==1) else $fatal(1,"lt s failed %d",ALU_out);
+        assign rs=20;
+        #5 assert(ALU_out==0) else $fatal(1,"lt s failed %d",ALU_out);
+        assign ALU_ctrl=21;
+        assign rs=10;
+        assign rt=12;
+        #5 assert(ALU_out==1) else $fatal(1,"lt us failed %d",ALU_out);
+        assign rs=20;
+        #5 assert(ALU_out==0) else $fatal(1,"lt us failed %d",ALU_out);
+        assign ALU_ctrl=22;
         assign rs=12;
         assign rt=10;
         #5 assert(ALU_out==1) else $fatal(1,"ne failed %d",ALU_out);
-        #5 assert(bflag==5) else $fatal(1,"ne failed %d",bflag);
         assign rs=10;
         #5 assert(ALU_out==0) else $fatal(1,"ne failed %d",ALU_out);
 
 
     end
 
-    ALU dut(rs, rt, shift, ALU_ctrl, ALU_out, ALU_lo, ALU_hi, bflag);
+    ALU dut(rs, rt, shift, ALU_ctrl, ALU_out, ALU_lo, ALU_hi);
 
 endmodule

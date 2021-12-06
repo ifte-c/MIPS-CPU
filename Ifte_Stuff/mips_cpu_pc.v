@@ -10,14 +10,14 @@ module mips_cpu_pc(
     input logic[15:0] offset,
     input logic[25:0] target,
     input logic[3:0] control, // rs==rt | rs > 0 | rs == 0 | rs < 0
-    output logic[31:0] pc = 32'hBFC00000,
+    output logic[31:0] pc,
     output logic[31:0] regstore
 );
-
     logic[31:0] dest; // stores address after delay slot
     logic delayflag = 0;
     logic[31:0] pc_inc;
 
+    initial pc = 32'hBFC00000;
     assign pc_inc = pc + 4;
 
     always_ff @(posedge clk) begin

@@ -19,6 +19,9 @@ module pc_tb();
         $dumpvars(0, pc_tb);
 
         clk = 0;
+        opcode = 6'b000010;
+        target = 26'b01010101010111111111010101;
+        reset = 0;
         repeat(1000) begin
             #10;
             clk = !clk;
@@ -30,9 +33,6 @@ module pc_tb();
     initial begin
         #5;
         $display("Initial PC value: %b", pc);
-        opcode = 6'b000010;
-        target = 26'b01010101010111111111010101;
-        reset = 0;
 
         #10;
         $display("PC value: %b", pc);

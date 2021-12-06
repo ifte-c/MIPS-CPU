@@ -27,11 +27,11 @@ module mips_cpu_pc(
             delayflag <= 0;
             regstore <= 0;
         end else begin
-            if (opcode == 000010) begin                                                     //j
+            if (opcode == 6'b000010) begin                                                     //j
                 dest <= { 4'b0000, target, 2'b00 } + { pc_inc[31:28], 28'b0000000000000000000000000000 };
                 pc <= pc + 4;
                 delayflag <= 1;
-            end else if (opcode == 000011) begin                                            //jal
+            end else if (opcode == 6'b000011) begin                                            //jal
                 regstore <= pc + 8; //goes to r31
                 dest <= { 4'b0000, target, 2'b00 } + { pc_inc[31:28], 28'b0000000000000000000000000000 };
                 pc <= pc + 4;

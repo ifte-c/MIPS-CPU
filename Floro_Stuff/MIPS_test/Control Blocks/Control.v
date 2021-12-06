@@ -21,7 +21,8 @@ module control(
     output logic lo_en,
     output logic hi_en,
     output logic IoD,
-    output logic extend
+    output logic extend,
+    output logic[1:0] instr_type;
 );
 
     typedef enum logic[2:0]{
@@ -34,17 +35,20 @@ module control(
     state_t state;
 
 
-    logic[1:0] instr_type;//separating memory from non memory operations
+    
   
     always_comb begin
         if((op==6'b100000)||(op==6'b100100)||(op==6'b100001)||(op==6'b100101)||(op==6'b001111)||(op==6'b100011)||(op==6'b100010)||(op==6'b100110)) begin
-            instr_type=1;
+            instr_type=2;//load
         end
         else if(((op==6'b000001) && ((rt==5'b10001)||(rt==5'b10000))) || ((op==0) && (func==6'b001001)) || (op==000011)) begin
-            instr_type=2;
+            instr_type=1;//store
+        end
+        else if((op==6'b101000)||(op==6'b101001)||(op==6'b101011)) begin
+            instr_type=3;//link
         end
         else begin
-            instr_type=0;
+            instr_type=0;//other
         end
     end
 
@@ -65,11 +69,11 @@ module control(
                 state<=EX;
             end
 
-            else if(state==EX && instr_type==0) begin//Execute cycle, return to Fetch cycle
+            else if(state==EX && instr_type<2) begin//Execute cycle, return to Fetch cycle
                 state<=IF;
             end
 
-            else if(state==EX && instr_type>=1) begin//Execute cycle, continue to access memory cycle
+            else if(state==EX && instr_type>=2) begin//Execute cycle, continue to access memory cycle
                 state<=MEM;
             end
 
@@ -419,7 +423,7 @@ module control(
         end
 
         else if(state==MEM) begin//Read/Link memorcy cycle
-            if(instr_type==2)begin
+            if(instr_type==3)begin
                 mem_write=0;
                 mem_read=0;
                 reg_data_sel=1;

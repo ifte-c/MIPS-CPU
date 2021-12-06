@@ -22,6 +22,7 @@ module control_tb();
     logic hi_en;
     logic IoD;
     logic extend;
+    logic instr_type;
 
     initial begin
         $dumpfile("control_tb.vcd");
@@ -44,6 +45,6 @@ module control_tb();
 
     control dut (op, func, rt, clk, reset, mem_write, mem_read, reg_data_sel,
         reg_dest, reg_write, IR_write, ALU_srcA, ALU_srcB, ALUop, PC_src, PC_write,
-        PC_write_cond, lo_sel, hi_sel, lo_en, hi_en, IoD, extend
+        PC_write_cond, lo_sel, hi_sel, lo_en, hi_en, IoD, extend, instr_type
     );
 endmodule

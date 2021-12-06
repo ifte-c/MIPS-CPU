@@ -6,7 +6,7 @@ module mips_cpu_pc(
     input logic[4:0] rt,
     input logic[4:0] sa,
     input logic[4:0] rd,
-    input logic[31:0] rs_data, //received from register
+    input logic[31:0] rs_data, // received from register
     input logic[15:0] offset,
     input logic[25:0] target,
     input logic[3:0] control, // rs==rt | rs > 0 | rs == 0 | rs < 0
@@ -14,7 +14,7 @@ module mips_cpu_pc(
     output logic[31:0] regstore
 );
 
-    logic[31:0] dest;
+    logic[31:0] dest; // stores address after delay slot
     logic delayflag = 0;
     logic[31:0] pc_inc;
 
@@ -22,7 +22,7 @@ module mips_cpu_pc(
 
     always_ff @(posedge clk) begin
         if (reset == 1) begin
-            pc <= 0;
+            pc <= 32'hBFC00000;
             dest <= 0;
             delayflag <= 0;
             regstore <= 0;
@@ -66,13 +66,11 @@ module mips_cpu_pc(
                 dest <= pc + 4 + { {14{ offset[15] }}, offset, 2'b00 };
                 pc <= pc + 4;
                 delayflag <= 1;
+            end else if (delayflag == 1) begin
+                pc <= dest;
+                delayflag <= 0;
             end else begin
-                if (delayflag == 1) begin
-                    pc <= dest;
-                    delayflag <= 0;
-                end else begin
-                    pc <= pc + 4;
-                end
+                pc <= pc + 4;
             end
         end
     end

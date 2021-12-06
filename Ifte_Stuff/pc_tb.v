@@ -32,12 +32,29 @@ module pc_tb();
         $display("Initial PC value: %b", pc);
         opcode = 6'b000010;
         target = 26'b01010101010111111111010101;
+        reset = 0;
 
         #10;
         $display("PC value: %b", pc);
         opcode = 0;
         sa = 0;
         funct = 6'b100000;
+
+        #10;
+        #10;
+        $display("PC value: %b", pc);
+
+        #10;
+        #10;
+        $display("PC value: %b", pc);
+
+        #10;
+        #10;
+        $display("PC value: %b", pc);
+
+        #10;
+        #10;
+        $display("PC value: %b", pc);
 
         #10;
         #10;

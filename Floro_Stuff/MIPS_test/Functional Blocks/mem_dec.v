@@ -108,18 +108,18 @@ module mem_dec(
 
         6'b100010 : begin //LWL
             case(be_signal)
-            4'b1000 : data_out={rt_byte0,rt_byte1, rt_byte2, byte3};
-            4'b1100 : data_out={rt_byte0, rt_byte1, byte2, byte3};
-            4'b1110 : data_out={rt_byte0, byte1, byte2, byte3};
+            4'b1000 : data_out={byte3, rt_byte1,rt_byte2, rt_byte3};
+            4'b1100 : data_out={byte2, byte3, rt_byte2, rt_byte3};
+            4'b1110 : data_out={byte1, byte2, byte3, rt_byte3};
             4'b1111 : data_out={byte0, byte1, byte2, byte3};
             endcase
         end
 
         6'b100010 : begin //LWR
             case(be_signal)
-            4'b0001 : data_out={byte0,rt_byte1, rt_byte2, rt_byte3};
-            4'b0011 : data_out={byte0,byte1, rt_byte2, rt_byte3};
-            4'b0111 : data_out={byte0, byte1, byte2, rt_byte3};
+            4'b0001 : data_out={rt_byte0, rt_byte1, rt_byte2, byte0};
+            4'b0011 : data_out={rt_byte0, rt_byte1, byte0, byte1};
+            4'b0111 : data_out={rt_byte0, byte0, byte1, byte2};
             4'b1111 : data_out={byte0, byte1, byte2, byte3};
             endcase
         end

@@ -4,16 +4,18 @@ module control(
     input logic[4:0] rt,
     input logic clk,
     input logic reset,
+    input logic waitrequest,
+    input logic[31:0] address,
     output logic mem_write,
     output logic mem_read,
-    output logic[1:0] reg_data_sel,
+    output logic reg_data_sel,
     output logic[1:0] reg_dest,
     output logic reg_write,
     output logic IR_write,
     output logic IR_sel,
     output logic ALU_srcA,
     output logic[1:0] ALU_srcB,
-    output logic[5:0] ALUop,
+    output logic[4:0] ALUop,
     output logic[1:0] PC_src,
     output logic PC_write,
     output logic PC_write_cond,
@@ -30,7 +32,8 @@ module control(
         IF = 3'd0,
         ID = 3'd1,
         EX = 3'd2,
-        MEM = 3'd3
+        MEM = 3'd3,
+        STP = 3'd4
      } state_t;
 
     state_t state;
@@ -61,9 +64,15 @@ module control(
         if(reset==1) begin
             state<=IF;
         end
+        else if(address==0) begin
+            state<=STP;
+        end
         else begin
             if(state==IF) begin//Fetch cycle
-                state<=ID;
+                case(waitrequest)
+                0 : state<=ID;
+                1 : state<=IF;
+                endcase
             end
 
             else if(state==ID) begin//Instruction Decode cycke
@@ -71,7 +80,12 @@ module control(
             end
 
             else if(state==EX && instr_type<2) begin//Execute cycle, return to Fetch cycle
-                state<=IF;
+                if(waitrequest==1 && instr_type==1) begin
+                    state<=EX;
+                end
+                else begin
+                    state<=IF;
+                end
             end
 
             else if(state==EX && instr_type>=2) begin//Execute cycle, continue to access memory cycle
@@ -79,7 +93,12 @@ module control(
             end
 
             else if(state==MEM) begin//Write/Read memorcy cycle, return to Fetch cycle
-                state<=IF;
+                if(waitrequest==1 && instr_type==2) begin
+                    state<=MEM;
+                end
+                else begin
+                    state<=IF;
+                end
             end
         end
     end
@@ -430,7 +449,7 @@ module control(
             if(instr_type==3)begin
                 mem_write=0;
                 mem_read=0;
-                reg_data_sel=1;
+                reg_data_sel=0;
                 reg_dest=2;
                 reg_write=1;
                 IR_write=0;

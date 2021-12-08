@@ -1,8 +1,9 @@
-module Hold_Reg(
+module lo_hi(
     input logic[31:0] data_in,
     output logic[31:0] data_out,
     input logic clk,
-    input logic reset
+    input logic reset,
+    input logic enable
 );
 
     logic[31:0] reg_val;
@@ -16,11 +17,11 @@ module Hold_Reg(
         end
     end
 
-    always_ff @(negedge clk) begin
+    always_ff @(posedge clk) begin
         if(reset==1) begin
             reg_val <= 0;
         end
-        else begin
+        else if(enable==1) begin
             reg_val <= data_in;
         end
     end

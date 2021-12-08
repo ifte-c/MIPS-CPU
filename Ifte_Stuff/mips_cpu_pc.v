@@ -1,6 +1,7 @@
 module mips_cpu_pc(
     input logic clk,
     input logic reset,
+    input logic waitrequest,
     input logic[5:0] opcode,
     input logic[5:0] funct,
     input logic[4:0] rt,
@@ -21,7 +22,9 @@ module mips_cpu_pc(
     assign pc_inc = pc + 4;
 
     always_ff @(posedge clk) begin
-        if (reset == 1) begin
+        if (waitrequest == 1) begin
+            //do nothing
+        end else if (reset == 1) begin
             pc <= 32'hBFC00000;
             dest <= 0;
             delayflag <= 0;

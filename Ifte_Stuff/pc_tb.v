@@ -2,6 +2,7 @@ module pc_tb();
 
     logic clk;
     logic reset;
+    logic waitrequest;
     logic[5:0] opcode;
     logic[5:0] funct;
     logic[4:0] rt;
@@ -68,6 +69,7 @@ module pc_tb();
     mips_cpu_pc dut(
         .clk(clk),
         .reset(reset),
+        .waitrequest(waitrequest),
         .opcode(opcode),
         .funct(funct),
         .rt(rt),

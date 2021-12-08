@@ -13,16 +13,21 @@ module alu(
 
     logic[5:0] opcode;
     logic[5:0] funct;
+    logic[4:0] shamt;
 
     logic[31:0] als_out;
     logic[31:0] shift_out;
 
     assign opcode = ir[31:26];
     assign funct = ir[5:0];
+    assign shamt = ir[10:6];
+
+    logic als_shift;
+    assign als_shift = funct[5];
 
     always_comb begin
         if(opcode == 0) begin
-            if(funct[5] == 1'b1) begin
+            if(als_shift == 1'b1) begin
                 alu_out = als_out;
             end else begin
                 alu_out = shift_out;
@@ -39,6 +44,8 @@ module alu(
     .add_sub_out(als_out), 
     .branch_conditions(branch_conditions)
     );
+
+    shifter shift(.opcode(opcode),.funct(funct), .shamt(shamt), .op1(op1), .op2(op2), .shift_out(shift_out));
 
     MUL_DIV_Block mdb(
     .clk(clk), 

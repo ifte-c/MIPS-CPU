@@ -16,50 +16,50 @@ module shifter_tb();
     initial begin
         funct = 0;
         shamt = 1;
-        while (shamt < 5'b11111) begin
+        while (shamt < 5) begin
             #5;
             $display("%b", shift_out);
-            shamt = shamt * 2;
+            shamt = shamt + 1;
         end
         shamt = 1;
 
         funct = 6'b000100;
-        while (shamt < 17) begin
+        while (shamt < 5) begin
             #5;
             $display("%b", shift_out);
-            shamt = shamt * 2;
+            shamt = shamt + 1;
         end
         shamt = 1;
 
         funct = 6'b000011;
-        while (shamt < 17) begin
+        while (shamt < 5) begin
             #5;
             $display("%b", shift_out);
-            shamt = shamt * 2;
+            shamt = shamt + 1;
         end
         shamt = 1;
 
         funct = 6'b000111;
-        while (shamt < 17) begin
+        while (shamt < 5) begin
             #5;
             $display("%b", shift_out);
-            shamt = shamt * 2;
+            shamt = shamt + 1;
         end
         shamt = 1;
 
         funct = 6'b000010;
-        while (shamt < 17) begin
-            #2;
+        while (shamt < 5) begin
+            #5;
             $display("%b", shift_out);
-            shamt = shamt * 2;
+            shamt = shamt + 1;
         end
         shamt = 1;
 
         funct = 6'b000110;
-        while (shamt < 17) begin
-            #2;
+        while (shamt < 5) begin
+            #5;
             $display("%b", shift_out);
-            shamt = shamt * 2;
+            shamt = shamt + 1;
         end
 
     end

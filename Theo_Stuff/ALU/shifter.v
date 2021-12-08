@@ -19,7 +19,7 @@ module shifter(
 
     assign left_logical = op2 << sa;
     assign right_logical = op2 >> sa;
-    assign right_arithmetic = op2 <<< sa;
+    assign right_arithmetic = $signed(op2) >>> sa;
 
     assign shamt32[31:5] = 0;
     assign shamt32[4:0] = shamt;

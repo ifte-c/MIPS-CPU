@@ -45,7 +45,12 @@ module alu(
     .branch_conditions(branch_conditions)
     );
 
-    shifter shift(.opcode(opcode),.funct(funct), .shamt(shamt), .op1(op1), .op2(op2), .shift_out(shift_out));
+    shifter shift(.opcode(opcode), 
+    .funct(funct), 
+    .shamt(shamt), 
+    .op1(op1), 
+    .op2(op2), 
+    .shift_out(shift_out));
 
     MUL_DIV_Block mdb(
     .clk(clk), 

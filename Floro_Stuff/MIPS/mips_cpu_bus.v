@@ -16,8 +16,6 @@ module mips_cpu_bus(
 );
 
     //control outputs
-    logic mem_write;
-    logic mem_read;
     logic reg_data_sel;
     logic[1:0] reg_dest;
     logic reg_write;
@@ -74,6 +72,8 @@ module mips_cpu_bus(
     logic[31:0] lo_out;
     logic[31:0] hi_out;
     logic[31:0] jumpaddress;
+    logic[31:0] mem_paddr;
+    logic PC_write_condcomb;
 
 
 
@@ -164,11 +164,31 @@ module mips_cpu_bus(
     );
 
     PC mips_pc(
-        .nxt_pc_val(PC_in), .pc_ctrl(PC_write), .pc_write_cond(PC_write_cond),
-        .instr_type(instr_type), .clk(clk), 
+        .nxt_pc_val(PC_in), .pc_ctrl(PC_write), .pc_write_cond(PC_write_condcomb),
+        .instr_type(instr_type), .clk(clk), .reset(reset), .waitrequest(waitrequest),
+        .cur_pc_val(PC_out)
+    );
+
+    Mux2_32 mips_IoD(
+        .input_0(PC_out), .input_1(ALUout), .out(mem_paddr), .select(IoD)
+    );
+
+    mem_int mips_out(
+        .cpu_out(mem_paddr), .op(op), .instr_type(instr_type), .mem_addr(address),
+        .byteenable(byteenable)
+    );
+
+    control mips_control(
+        .op(op), .func(func), .rt(rt), .clk(clk), .reset(reset), .waitrequest(waitrequest),
+        .address(address), .mem_write(write), .mem_read(read), .reg_data_sel(reg_data_sel),
+        .reg_dest(reg_dest), .reg_write(reg_write), .IR_write(IR_write), .IR_sel(IR_sel),
+        .ALU_srcA(ALU_srcA), .ALU_srcB(ALU_srcB), .ALUop(ALUop), .PC_src(PC_src), .PC_write(PC_write),
+        .PC_write_cond(PC_write_cond), .lo_sel(lo_sel), .hi_sel(hi_sel), .lo_en(lo_en), .hi_en(hi_en),
+        .IoD(IoD), .extend(extend), .instr_type(instr_type)
     );
 
     assign writedata=reg_B;
+    assign PC_write_condcomb = PC_write_cond && ALUout; 
 
 
 endmodule

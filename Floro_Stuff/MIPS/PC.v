@@ -2,7 +2,7 @@ module PC(
     input logic[31:0] nxt_pc_val,
     input logic pc_ctrl,
     input logic pc_write_cond,
-    input logic instr_type,
+    input logic[1:0] instr_type,
     input logic clk,
     input logic reset,
     input logic waitrequest,

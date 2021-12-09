@@ -25,7 +25,8 @@ module control(
     output logic hi_en,
     output logic IoD,
     output logic extend,
-    output logic[1:0] instr_type
+    output logic[1:0] instr_type,
+    output logic active
 );
 
     typedef enum logic[2:0]{
@@ -46,15 +47,16 @@ module control(
             instr_type=2;//load
         end
         else if(((op==6'b000001) && ((rt==5'b10001)||(rt==5'b10000))) || ((op==0) && (func==6'b001001)) || (op==000011)) begin
-            instr_type=1;//store
+            instr_type=3;//link
         end
         else if((op==6'b101000)||(op==6'b101001)||(op==6'b101011)) begin
-            instr_type=3;//link
+            instr_type=1;//store
         end
         else begin
             instr_type=0;//other
         end
     end
+
 
     initial begin
         state=IF;
@@ -80,7 +82,7 @@ module control(
             end
 
             else if(state==EX && instr_type<2) begin//Execute cycle, return to Fetch cycle
-                if(waitrequest==1 && instr_type==1) begin
+                if(waitrequest==1 && (instr_type==1)) begin
                     state<=EX;
                 end
                 else begin
@@ -89,17 +91,26 @@ module control(
             end
 
             else if(state==EX && instr_type>=2) begin//Execute cycle, continue to access memory cycle
-                state<=MEM;
+                if(waitrequest==1 && (instr_type==2)) begin
+                    state<=EX;
+                end
+                else begin
+                    state<=MEM;
+                end
             end
 
             else if(state==MEM) begin//Write/Read memorcy cycle, return to Fetch cycle
-                if(waitrequest==1 && instr_type==2) begin
-                    state<=MEM;
-                end
-                else begin
                     state<=IF;
-                end
             end
+        end
+    end
+
+    always_comb begin
+        if(state==STP) begin
+            active=0;
+        end
+        else begin
+            active=1;
         end
     end
 
@@ -426,7 +437,7 @@ module control(
                 IoD=1;
                 reg_write=0;
             end
-            6'b101001 : begin//SLTI
+            6'b001010 begin//SLTI
                 ALUop=20;
                 ALU_srcB=2;
             end
@@ -434,7 +445,7 @@ module control(
                 ALUop=21;
                 ALU_srcB=2;
             end
-            6'b101001 : begin//SW
+            6'b101011 : begin//SW
                 ALUop=0;
                 ALU_srcB=2;
                 mem_read=1;

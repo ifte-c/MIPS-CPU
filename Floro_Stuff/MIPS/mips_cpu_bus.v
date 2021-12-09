@@ -184,7 +184,7 @@ module mips_cpu_bus(
         .reg_dest(reg_dest), .reg_write(reg_write), .IR_write(IR_write), .IR_sel(IR_sel),
         .ALU_srcA(ALU_srcA), .ALU_srcB(ALU_srcB), .ALUop(ALUop), .PC_src(PC_src), .PC_write(PC_write),
         .PC_write_cond(PC_write_cond), .lo_sel(lo_sel), .hi_sel(hi_sel), .lo_en(lo_en), .hi_en(hi_en),
-        .IoD(IoD), .extend(extend), .instr_type(instr_type)
+        .IoD(IoD), .extend(extend), .instr_type(instr_type), .active(active)
     );
 
     assign writedata=reg_B;

@@ -437,7 +437,7 @@ module control(
                 IoD=1;
                 reg_write=0;
             end
-            6'b001010 begin//SLTI
+            6'b001010 : begin//SLTI
                 ALUop=20;
                 ALU_srcB=2;
             end

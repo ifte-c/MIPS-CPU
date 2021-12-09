@@ -178,6 +178,10 @@ module mips_cpu_bus(
         .byteenable(byteenable)
     );
 
+    store_filter mips_store(
+        .data_in(reg_B), .op(op), .data_out(writedata)
+    );
+
     control mips_control(
         .op(op), .func(func), .rt(rt), .clk(clk), .reset(reset), .waitrequest(waitrequest),
         .address(address), .mem_write(write), .mem_read(read), .reg_data_sel(reg_data_sel),
@@ -187,7 +191,6 @@ module mips_cpu_bus(
         .IoD(IoD), .extend(extend), .instr_type(instr_type), .active(active)
     );
 
-    assign writedata=reg_B;
     assign PC_write_condcomb = PC_write_cond && ALUout; 
 
 

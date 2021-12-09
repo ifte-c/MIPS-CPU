@@ -127,7 +127,6 @@ module control(
             ALU_srcB=2'b01;
             ALUop=0;
             PC_src=2'b01;
-            PC_write=1;
             PC_write_cond=0;
             lo_sel=0;
             hi_sel=0;
@@ -135,6 +134,10 @@ module control(
             hi_en=0;
             IoD=0;
             extend=0;
+            case(waitrequest)
+                0 : PC_write=1;
+                1 : PC_write=0;
+            endcase
         end
 
         else if(state==ID) begin//Instruction Decode cycke

@@ -39,4 +39,13 @@ module state_machine(
 
     end
 
+    always_comb begin
+        if(state==3) begin
+            active=0;
+        end
+        else begin
+            active=1;
+        end
+    end
+
 endmodule

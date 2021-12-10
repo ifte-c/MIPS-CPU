@@ -67,7 +67,7 @@ module mips_cpu_IR(
             op=t_op;
             rs=t_rs;
             rd=t_rd;
-            rt=t_rd;
+            rt=t_rt;
             shift=t_shift;
             func=t_func;
             i=t_i;
@@ -77,7 +77,7 @@ module mips_cpu_IR(
             op=m_op;
             rs=m_rs;
             rd=m_rd;
-            rt=m_rd;
+            rt=m_rt;
             shift=m_shift;
             func=m_func;
             i=m_i;

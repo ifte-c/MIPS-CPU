@@ -17,7 +17,7 @@ module mips_cpu_bus_tb();
         $dumpfile("mips_cpu_bus_tb.vcd");
         $dumpvars(0,  mips_cpu_bus_tb);
         clk=0;
-        repeat (15) begin
+        repeat (50) begin
             #10;
             clk=~clk;
         end
@@ -26,9 +26,25 @@ module mips_cpu_bus_tb();
     initial begin
         reset=1;
         waitrequest=0;
-        #20;
+        #20;//20
         reset=0;
-        readdata=32'h8C400000;
+        #10//30
+        readdata=32'h3C03BFC0;
+        #60;//90
+        readdata=32'h8C690028;
+        #20;//110
+        readdata=32'hffff0000;
+        #5;//125
+        waitrequest=1;
+        #20;//135
+        waitrequest=0;
+        #15;//150
+        readdata=32'h000000C0;
+        #20;//170
+        readdata=32'h00000008;
+        #60;
+        readdata=32'h25220000;
+
                
     end
 

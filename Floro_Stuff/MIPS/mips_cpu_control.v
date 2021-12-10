@@ -43,7 +43,7 @@ module mips_cpu_control(
     
   
     always_comb begin
-        if((op==6'b100000)||(op==6'b100100)||(op==6'b100001)||(op==6'b100101)||(op==6'b001111)||(op==6'b100011)||(op==6'b100010)||(op==6'b100110)) begin
+        if((op==6'b100000)||(op==6'b100100)||(op==6'b100001)||(op==6'b100101)||(op==6'b100011)||(op==6'b100010)||(op==6'b100110)) begin
             instr_type=2;//load
         end
         else if(((op==6'b000001) && ((rt==5'b10001)||(rt==5'b10000))) || ((op==0) && (func==6'b001001)) || (op==000011)) begin
@@ -106,7 +106,7 @@ module mips_cpu_control(
     end
 
     always_comb begin
-        if(state==STP) begin
+        if((state==STP)||(reset==1)) begin
             active=0;
         end
         else begin
@@ -115,7 +115,28 @@ module mips_cpu_control(
     end
 
     always_comb begin
-        if(state==IF) begin//Fetch cycle
+        if(state==STP) begin//halt behaviour
+            mem_write=0;
+            mem_read=0;
+            reg_data_sel=0;
+            reg_dest=0;
+            reg_write=0;
+            IR_write=0;
+            IR_sel=0;
+            ALU_srcA=0;
+            ALU_srcB=0;
+            ALUop=0;
+            PC_src=0;
+            PC_write=0;
+            PC_write_cond=0;
+            lo_sel=0;
+            hi_sel=0;
+            lo_en=0;
+            hi_en=0;
+            IoD=0;
+            extend=0;
+        end
+        else if(state==IF) begin//Fetch cycle
             mem_write=0;
             mem_read=1;
             reg_data_sel=0;
@@ -391,12 +412,9 @@ module mips_cpu_control(
                 IoD=1;
                 reg_write=0;
             end
-            6'b100101 : begin//LUI
+            6'b001111 : begin//LUI
                 ALUop=25;
                 ALU_srcB=2;
-                mem_read=1;
-                IoD=1;
-                reg_write=0;
             end
             6'b100011 : begin//LW
                 ALUop=0;

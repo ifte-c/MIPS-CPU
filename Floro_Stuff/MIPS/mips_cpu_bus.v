@@ -130,7 +130,7 @@ module mips_cpu_bus(
     );
 
     ALU mips_alu(
-        .rs(reg_A), .rt(reg_B), .shift(shift), .ALU_ctrl(ALUop), .ALU_out(ALUout),
+        .rs(ALU_inA), .rt(ALU_inB), .shift(shift), .ALU_ctrl(ALUop), .ALU_out(ALUout),
         .ALU_lo(ALUlo), .ALU_hi(ALUhi)
     );
 

@@ -33,7 +33,7 @@ module PC(
         end
     end
 
-    always_ff @(negedge clk) begin 
+    always_ff @(posedge clk) begin 
         if (waitrequest==0) begin
             if((pc_ctrl==1) && (pc_write_cond==0)) begin//stores next value
                 pc_val <= nxt_pc_val;
@@ -61,7 +61,7 @@ module PC(
     end
 
 
-    always_ff @(negedge clk) begin//counter to ensure branch delay works
+    always_ff @(posedge clk) begin//counter to ensure branch delay works
         if (waitrequest==0) begin
             if(BoJ_flag==1) begin
                 counter <= counter+1;

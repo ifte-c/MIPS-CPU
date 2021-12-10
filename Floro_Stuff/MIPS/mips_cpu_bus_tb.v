@@ -12,6 +12,7 @@ module mips_cpu_bus_tb();
     logic[3:0] byteenable;
     logic[31:0] readdata;
 
+    
     initial begin
         $dumpfile(" mips_cpu_bus_tb.vcd");
         $dumpvars(0,  mips_cpu_bus_tb);
@@ -24,8 +25,11 @@ module mips_cpu_bus_tb();
 
     initial begin
         reset=1;
-        #20
+        waitrequest=0;
+        #20;
         reset=0;
+        readdata=32'h8C400000;
+               
     end
 
 

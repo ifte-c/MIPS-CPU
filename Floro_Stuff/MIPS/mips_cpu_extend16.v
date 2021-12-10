@@ -1,4 +1,4 @@
-module extend_16(
+module mips_cpu_extend16(
     input logic[15:0] in,
     input logic zero_sign,
     output logic[31:0] out

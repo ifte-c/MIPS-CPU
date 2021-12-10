@@ -1,4 +1,4 @@
-module store_filter(
+module mips_cpu_storefilter(
     input logic[31:0] data_in,
     input logic[5:0] op,
     output logic[31:0] data_out

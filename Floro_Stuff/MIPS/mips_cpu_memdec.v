@@ -1,4 +1,4 @@
-module mem_dec(
+module mips_cpu_memdec(
     input logic[31:0] data_in,
     input logic[31:0] rt,
     input logic[3:0] byteenable,

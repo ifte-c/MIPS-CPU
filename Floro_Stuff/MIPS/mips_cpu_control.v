@@ -1,4 +1,4 @@
-module control(
+module mips_cpu_control(
     input logic[5:0] op,
     input logic[5:0] func,
     input logic[4:0] rt,

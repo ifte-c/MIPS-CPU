@@ -79,110 +79,110 @@ module mips_cpu_bus(
 
 
     //Instruction Regsiter
-    IR mips_ir(
+    mips_cpu_IR mips_ir(
         .mem_input(readdata), .IRWrite(IR_write), .IR_sel(IR_sel), .clk(clk),
         .reset(reset), .op(op), .rs(rs), .rt(rt), .rd(rd), .shift(shift),
         .func(func), .i(i), .mem_address(mem_address)
     );
 
-    Mux3_5 mips_reg_write_adr_mux(
+    mips_cpu_Mux3S5 mips_reg_write_adr_mux(
         .input_0(rt), .input_1(rd), .input_2(5'd31), .out(reg_data_dest), .select(reg_dest)
     );
 
-    Register mips_register(
+    mips_cpu_register mips_register(
         .read_register_1(rs), .read_register_2(rt), .read_data_1(data_1), .read_data_2(data_2),
         .register_v0(register_v0), .write_register(reg_data_dest), .write_data(reg_data),
         .clk(clk), .reset(reset), .Regwrite(reg_write)
     );
 
-    Hold_Reg A(
+    mips_cpu_holdreg A(
         .data_in(data_1), .data_out(reg_A), .clk(clk), .reset(reset)
     );
 
-    Hold_Reg B(
+    mips_cpu_holdreg B(
         .data_in(data_2), .data_out(reg_B), .clk(clk), .reset(reset)
     );
 
-    extend_16 mips_extend(
+    mips_cpu_extend16 mips_extend(
         .in(i), .zero_sign(extend), .out(i_ex)
     );
 
-    shift2 mips_shift2(
+    mips_cpu_shift2 mips_shift2(
         .in(i_ex), .out(i_ex_sl)
     );
 
-    Mux2_32 mips_reg_data_in(
+    mips_cpu_Mux2 mips_reg_data_in(
         .input_0(ALUout), .input_1(mem_data), .out(reg_data), .select(reg_data_sel)
     );
 
-    mem_dec mips_mem_dec(
+    mips_cpu_memdec mips_mem_dec(
         .data_in(readdata), .rt(reg_B), .byteenable(byteenable), .op(op),
         .data_out(mem_data), .clk(clk), .reset(reset)
     );
 
-    Mux4 mips_aluB_mux(
+    mips_cpu_Mux4 mips_aluB_mux(
         .input_0(reg_B), .input_1(32'd4), .input_2(i_ex), .input_3(i_ex_sl), .out(ALU_inB),
         .select(ALU_srcB)
     );
 
-    Mux2_32 mips_aluA_mux(
+    mips_cpu_Mux2 mips_aluA_mux(
         .input_0(PC_out), .input_1(reg_A), .out(ALU_inA), .select(ALU_srcA)
     );
 
-    ALU mips_alu(
+    mips_cpu_ALU mips_alu(
         .rs(ALU_inA), .rt(ALU_inB), .shift(shift), .ALU_ctrl(ALUop), .ALU_out(ALUout),
         .ALU_lo(ALUlo), .ALU_hi(ALUhi)
     );
 
-    Mux2_32 mips_lo_reg_mux(
+    mips_cpu_Mux2 mips_lo_reg_mux(
         .input_0(ALUlo), .input_1(ALUout), .out(lo_in), .select(lo_sel)
     );
 
-    Mux2_32 mips_hi_reg_mux(
+    mips_cpu_Mux2 mips_hi_reg_mux(
         .input_0(ALUhi), .input_1(ALUout), .out(hi_in), .select(hi_sel)
     );
 
-    lo_hi mips_lo_reg(
+    mips_cpu_lohi mips_lo_reg(
         .data_in(lo_in), .data_out(lo_out), .clk(clk), .reset(reset), .enable(lo_en)
     );
 
-    lo_hi mips_hi_reg(
+    mips_cpu_lohi mips_hi_reg(
         .data_in(hi_in), .data_out(hi_out), .clk(clk), .reset(reset), .enable(hi_en)
     );
 
-    Hold_Reg ALUo(
+    mips_cpu_holdreg ALUo(
         .data_in(ALUout), .data_out(ALUout_delay), .clk(clk), .reset(reset)
     );
 
-    Mux4 mips_pc_mux(
+    mips_cpu_Mux4 mips_pc_mux(
         .input_0(ALUout_delay), .input_1(ALUout), .input_2(jumpaddress),
         .input_3(reg_A), .out(PC_in), .select(PC_src)
     );
 
-    j_adrs j_adrs(
+    mips_cpu_jadrs j_adrs(
         .mem_address(mem_address), .pc_val(PC_out), .jump_address(jumpaddress)
     );
 
-    PC mips_pc(
+    mips_cpu_PC mips_pc(
         .nxt_pc_val(PC_in), .pc_ctrl(PC_write), .pc_write_cond(PC_write_condcomb),
         .instr_type(instr_type), .clk(clk), .reset(reset), .waitrequest(waitrequest),
         .cur_pc_val(PC_out)
     );
 
-    Mux2_32 mips_IoD(
+    mips_cpu_Mux2 mips_IoD(
         .input_0(PC_out), .input_1(ALUout), .out(mem_paddr), .select(IoD)
     );
 
-    mem_int mips_out(
+    mips_cpu_memint mips_out(
         .cpu_out(mem_paddr), .op(op), .instr_type(instr_type), .mem_addr(address),
         .byteenable(byteenable)
     );
 
-    store_filter mips_store(
+    mips_cpu_storefilter mips_store(
         .data_in(reg_B), .op(op), .data_out(writedata)
     );
 
-    control mips_control(
+    mips_cpu_control mips_control(
         .op(op), .func(func), .rt(rt), .clk(clk), .reset(reset), .waitrequest(waitrequest),
         .address(address), .mem_write(write), .mem_read(read), .reg_data_sel(reg_data_sel),
         .reg_dest(reg_dest), .reg_write(reg_write), .IR_write(IR_write), .IR_sel(IR_sel),

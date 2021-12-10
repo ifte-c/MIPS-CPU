@@ -1,4 +1,4 @@
-module Register(
+module mips_cpu_register(
     input logic[4:0] read_register_1,
     input logic[4:0] read_register_2,
     output logic[31:0] read_data_1,

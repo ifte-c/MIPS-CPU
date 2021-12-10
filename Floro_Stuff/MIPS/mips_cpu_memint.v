@@ -1,4 +1,4 @@
-module mem_int(
+module mips_cpu_memint(
     input logic[31:0] cpu_out,
     input logic[5:0] op,
     input logic[1:0] instr_type,

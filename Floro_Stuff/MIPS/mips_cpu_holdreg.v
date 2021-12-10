@@ -1,4 +1,4 @@
-module Hold_Reg(
+module mips_cpu_holdreg(
     input logic[31:0] data_in,
     output logic[31:0] data_out,
     input logic clk,

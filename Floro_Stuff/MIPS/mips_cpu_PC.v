@@ -1,4 +1,4 @@
-module PC(
+module mips_cpu_PC(
     input logic[31:0] nxt_pc_val,
     input logic pc_ctrl,
     input logic pc_write_cond,

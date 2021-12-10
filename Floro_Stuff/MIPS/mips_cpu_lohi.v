@@ -1,4 +1,4 @@
-module lo_hi(
+module mips_cpu_lohi(
     input logic[31:0] data_in,
     output logic[31:0] data_out,
     input logic clk,

@@ -1,4 +1,4 @@
-module Mux3_5(
+module mips_cpu_Mux3S5(
     input logic[4:0] input_0,
     input logic[4:0] input_1,
     input logic[4:0] input_2,

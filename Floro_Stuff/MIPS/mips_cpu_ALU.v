@@ -1,4 +1,4 @@
-module ALU(
+module mips_cpu_ALU(
     input logic[31:0] rs,
     input logic[31:0] rt,
     input logic[4:0] shift,

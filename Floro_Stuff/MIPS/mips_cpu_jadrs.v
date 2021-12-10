@@ -1,4 +1,4 @@
-module j_adrs(
+module mips_cpu_jadrs(
     input logic[25:0] mem_address,
     input logic[31:0] pc_val,
     output logic[31:0] jump_address

@@ -44,10 +44,16 @@ module pc_tb();
         #10;
         #10;
         $display("PC value: %b", pc);
+        opcode = 6'b000100;
+        control = 4'b1000;
+        offset = 16'b0101000011110101;
 
         #10;
         #10;
         $display("PC value: %b", pc);
+        opcode = 0;
+        sa = 0;
+        funct = 6'b100000;
 
         #10;
         #10;

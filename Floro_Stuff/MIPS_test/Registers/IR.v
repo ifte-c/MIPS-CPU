@@ -16,23 +16,41 @@ module IR(
     //memory unit
     logic[31:0] instr;
     //temporary values due to always_comb conflict with bit array calls
-    logic[5:0] t_op=instr[31:26];
-    logic[4:0] t_rs=instr[25:21];
-    logic[4:0] t_rt=instr[20:16];
-    logic[4:0] t_rd=instr[15:11];
-    logic[4:0] t_shift=instr[10:6];
-    logic[5:0] t_func=instr[5:0];
-    logic[15:0] t_i=instr[15:0];
-    logic[25:0] t_mem_address=instr[25:0];
+    logic[5:0] t_op;
+    logic[4:0] t_rs;
+    logic[4:0] t_rt;
+    logic[4:0] t_rd;
+    logic[4:0] t_shift;
+    logic[5:0] t_func;
+    logic[15:0] t_i;
+    logic[25:0] t_mem_address;
+
+    assign t_op=instr[31:26];
+    assign t_rs=instr[25:21];
+    assign t_rt=instr[20:16];
+    assign t_rd=instr[15:11];
+    assign t_shift=instr[10:6];
+    assign t_func=instr[5:0];
+    assign t_i=instr[15:0];
+    assign t_mem_address=instr[25:0];
     //immediate passing through for ID cycle
-    logic[5:0] m_op=mem_input[31:26];
-    logic[4:0] m_rs=mem_input[25:21];
-    logic[4:0] m_rt=mem_input[20:16];
-    logic[4:0] m_rd=mem_input[15:11];
-    logic[4:0] m_shift=mem_input[10:6];
-    logic[5:0] m_func=mem_input[5:0];
-    logic[15:0] m_i=mem_input[15:0];
-    logic[25:0] m_mem_address=mem_input[25:0];
+    logic[5:0] m_op;
+    logic[4:0] m_rs;
+    logic[4:0] m_rt;
+    logic[4:0] m_rd;
+    logic[4:0] m_shift;
+    logic[5:0] m_func;
+    logic[15:0] m_i;
+    logic[25:0] m_mem_address;
+
+    assign m_op=mem_input[31:26];
+    assign m_rs=mem_input[25:21];
+    assign m_rt=mem_input[20:16];
+    assign m_rd=mem_input[15:11];
+    assign m_shift=mem_input[10:6];
+    assign m_func=mem_input[5:0];
+    assign m_i=mem_input[15:0];
+    assign m_mem_address=mem_input[25:0];
 
     always_comb begin
         if(reset==1) begin//reset output behaviour

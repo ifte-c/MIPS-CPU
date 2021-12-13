@@ -16,7 +16,10 @@ exec 2> /dev/null
 SOURCE_DIRECTORY="$1"
 INSTRUCTION="${2-all}"
 
-#relative paths to where the testbench files are and where the executable files should be stored
+#relative paths from the main folder to where the testbench files are and where the executable files should be stored
+mkdir test/testbenches
+mkdir test/executables
+
 TESTBENCH_DIRECTORY="test/testbenches"
 EXECUTABLE_DIRECTORY="test/executables"
 

@@ -157,7 +157,7 @@ module mips_cpu_ALU(
             ALU_out = 1; 
         end
 
-        else if(ALU_ctrl==25) begin//for Jump instructions
+        else if(ALU_ctrl==25) begin//for lui instructions
             ALU_out = rt << 16; 
         end
 

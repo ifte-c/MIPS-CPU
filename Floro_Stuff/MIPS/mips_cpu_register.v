@@ -45,6 +45,8 @@ module mips_cpu_register(
     logic[31:0] fp;//frame pointer
     logic[31:0] ra;//return address
 
+
+
     always_comb begin//output from register
         if(reset==1) begin//reset behaviour
             read_data_1=0;

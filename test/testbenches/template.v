@@ -1,4 +1,4 @@
-module mips_cpu_test();
+module instruction_number();
 
     logic clk;
     logic reset;

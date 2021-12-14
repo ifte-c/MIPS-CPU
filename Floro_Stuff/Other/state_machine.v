@@ -4,7 +4,8 @@ module state_machine(
     input logic reset,
     input logic[31:0] mem_address,
     input logic[5:0] opcode,
-    output logic[1:0] state
+    output logic[1:0] state,
+    output logic active
 );
 
     always_ff @(posedge clk) begin
@@ -19,7 +20,7 @@ module state_machine(
                 state <= 1;
             end
 
-            else if (state == 1 && (op==6'b100000)||(op==6'b100100)||(op==6'b100001)||(op==6'b100101)||(op==6'b100011)||(op==6'b100010)||(op==6'b100110)) begin
+            else if (state == 1 && (opcode==6'b100000)||(opcode==6'b100100)||(opcode==6'b100001)||(opcode==6'b100101)||(opcode==6'b100011)||(opcode==6'b100010)||(opcode==6'b100110)) begin
                 state <= 2;
             end
 

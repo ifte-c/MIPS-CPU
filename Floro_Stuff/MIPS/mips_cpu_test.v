@@ -43,24 +43,20 @@ module mips_cpu_test();
         memory[11] = 32'h000000f3;
     end
 
-    logic[7:0] writebyte2;
-    logic[7:0] writebyte3;
-    assign writebyte2=writedata[15:8];
-    assign writebyte3=writedata[7:0];
-
+    
     always @(posedge clk) begin
         if(write) begin
             case(byteenable)
             //sw
             4'b0000 : memory[mappedaddress]<=writedata;//no byteenable asserted, just regular write
             //sb
-            4'b0001 : memory[mappedaddress]<={writebyte3, memory[mappedaddress][23:0]};
-            4'b0010 : memory[mappedaddress]<={memory[mappedaddress][31:24], writebyte3 ,memory[mappedaddress][15:0]};
-            4'b0100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writebyte3 ,memory[mappedaddress][7:0]};
-            4'b1000 : memory[mappedaddress]<={memory[mappedaddress][31:8], writebyte3};
+            4'b0001 : memory[mappedaddress]<={writedata[7:0], memory[mappedaddress][23:0]};
+            4'b0010 : memory[mappedaddress]<={memory[mappedaddress][31:24], writedata[7:0] ,memory[mappedaddress][15:0]};
+            4'b0100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[7:0] ,memory[mappedaddress][7:0]};
+            4'b1000 : memory[mappedaddress]<={memory[mappedaddress][31:8], writedata[7:0]};
             //sh
-            4'b0011 : memory[mappedaddress]<={writebyte2, writebyte3, memory[mappedaddress][15:0]};
-            4'b1100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writebyte2, writebyte3};
+            4'b0011 : memory[mappedaddress]<={writedata[15:0], memory[mappedaddress][15:0]};
+            4'b1100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[15:0]};
             //sw
             4'b1111 : memory[mappedaddress]<=writedata;
             endcase
@@ -82,7 +78,8 @@ module mips_cpu_test();
 
         //check that CPU has correct value after reasonable cycle time, if active didn't go low it failed to complete in time
         //if register_v0 does not have correct value, also fail the testbench
-        if (active==0) begin  
+        if (active==0) begin 
+            $display("%h",memory[12]);
             //assert(register_v0==32'h56AA3CD0) else $fatal(1,"Wrong Value in v0, %h", register_v0);
             $finish;
         end

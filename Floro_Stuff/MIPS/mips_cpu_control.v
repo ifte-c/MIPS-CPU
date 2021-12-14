@@ -136,7 +136,7 @@ module mips_cpu_control(
             reg_data_sel=0;
             reg_dest=0;
             reg_write=0;
-            IR_write=1;
+            IR_write=0;
             IR_sel=0;
             ALU_srcA=0;
             ALU_srcB=2'b01;
@@ -161,7 +161,7 @@ module mips_cpu_control(
             reg_data_sel=0;
             reg_dest=0;
             reg_write=0;
-            IR_write=0;
+            IR_write=1;
             IR_sel=1;
             ALU_srcA=0;
             ALU_srcB=2'b11;

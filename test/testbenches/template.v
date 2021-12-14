@@ -102,10 +102,6 @@ module instruction_number();
         #10
         assert(active==1) else $fatal(1, "Active did not go high");
 
-        #170;
-        waitrequest=1;
-        #20
-        waitrequest=0;
     end
 
 

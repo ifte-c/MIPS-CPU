@@ -8,7 +8,7 @@ module mips_cpu_control(
     input logic[31:0] address,
     output logic mem_write,
     output logic mem_read,
-    output logic reg_data_sel,
+    output logic[1:0] reg_data_sel,
     output logic[1:0] reg_dest,
     output logic reg_write,
     output logic IR_write,
@@ -60,14 +60,17 @@ module mips_cpu_control(
 
     initial begin
         state=IF;
+        active=0;
     end
 
     always_ff @(posedge clk) begin//state machine
         if(reset==1) begin
             state<=IF;
+            active<=1;
         end
         else if(address==0) begin
             state<=STP;
+            active<=0;
         end
         else begin
             if(state==IF) begin//Fetch cycle
@@ -102,15 +105,6 @@ module mips_cpu_control(
             else if(state==MEM) begin//Write/Read memorcy cycle, return to Fetch cycle
                     state<=IF;
             end
-        end
-    end
-
-    always_comb begin
-        if((state==STP)||(reset==1)) begin
-            active=0;
-        end
-        else begin
-            active=1;
         end
     end
 
@@ -255,6 +249,16 @@ module mips_cpu_control(
                     lo_en=1;
                     lo_sel=1;
                     reg_write=0;
+                end
+                6'b010000 : begin //MFHI
+                    ALUop=23;
+                    reg_write=1;
+                    reg_data_sel=3;
+                end
+                6'b010010 : begin //MFLO
+                    ALUop=23;
+                    reg_write=1;
+                    reg_data_sel=2;
                 end
                 6'b011000 : begin   //MULT
                     ALUop=2;

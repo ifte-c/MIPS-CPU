@@ -16,7 +16,7 @@ module mips_cpu_bus(
 );
 
     //control outputs
-    logic reg_data_sel;
+    logic [1:0]reg_data_sel;
     logic[1:0] reg_dest;
     logic reg_write;
     logic IR_write;
@@ -111,8 +111,8 @@ module mips_cpu_bus(
         .in(i_ex), .out(i_ex_sl)
     );
 
-    mips_cpu_Mux2 mips_reg_data_in(
-        .input_0(ALUout), .input_1(mem_data), .out(reg_data), .select(reg_data_sel)
+    mips_cpu_Mux4 mips_reg_data_in(
+        .input_0(ALUout), .input_1(mem_data), .input_2(lo_out), .input_3(hi_out), .out(reg_data), .select(reg_data_sel)
     );
 
     mips_cpu_memdec mips_mem_dec(

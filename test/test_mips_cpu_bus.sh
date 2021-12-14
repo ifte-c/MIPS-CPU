@@ -17,7 +17,7 @@ SOURCE_DIRECTORY="$1"
 INSTRUCTION="${2-all}"
 
 #relative paths from the main folder to where the testbench files are and where the executable files should be stored
-mkdir test/testbenches
+#mkdir test/testbenches
 mkdir test/executables
 
 TESTBENCH_DIRECTORY="test/testbenches"
@@ -91,7 +91,7 @@ fi
 #use semicolons to delim. the comment section is optional. instruction must be lowercase. sort by instruction
 #######################################
 TESTBENCHES=(
-    "jr;jr_1;Jump register test"
+    "beq;beq_1"
 )
 
 #bash does not (easily) support multidimensional arrays, so I used a workaround
@@ -104,7 +104,7 @@ do
     #if we are testing all instructions, no checking is needed: run everything!
     if [[ "$INSTRUCTION" == "all" ]]
     then
-        iverilog -Wall -g 2012 -s "$TESTBENCH_DIRECTORY"/${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$SOURCE_DIRECTORY/mips_cpu_*.v" 1>&2
+        iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" "$SOURCE_DIRECTORY/mips_cpu_*.v" 1>&2
 
         #check if the testbench successfully compiled and returned 0. if not, fail and skip to the next iteration
         if [[ $? -ne 0 ]]
@@ -135,7 +135,7 @@ do
         fi       
 
         #everything below here is the same as above
-        iverilog -Wall -g 2012 -s "$TESTBENCH_DIRECTORY"/${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$SOURCE_DIRECTORY/mips_cpu_*.v" 1>&2
+        echo iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" "$SOURCE_DIRECTORY/mips_cpu_*.v" 1>&2
         if [[ $? -ne 0 ]]
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
@@ -154,4 +154,5 @@ do
 done
 
 #delete all executables at the end
-rm -r "$EXECUTABLE_DIRECTORY/*" 1>&2
+rm -r ""$EXECUTABLE_DIRECTORY/*"" 1>&2
+rm -r ""$EXECUTABLE_DIRECTORY"" 1>&2

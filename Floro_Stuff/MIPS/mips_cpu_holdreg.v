@@ -16,7 +16,7 @@ module mips_cpu_holdreg(
         end
     end
 
-    always_ff @(negedge clk) begin
+    always_ff @(posedge clk) begin
         if(reset==1) begin
             reg_val <= 0;
         end

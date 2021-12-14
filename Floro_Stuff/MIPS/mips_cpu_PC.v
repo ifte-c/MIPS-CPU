@@ -56,7 +56,7 @@ module mips_cpu_PC(
     end
 
 
-    always_ff @(posedge clk) begin//counter to ensure branch delay works
+    always_ff @(negedge clk) begin//counter to ensure branch delay works
         if (waitrequest==0) begin
             if(BoJ_flag==1) begin
                 counter <= counter+1;

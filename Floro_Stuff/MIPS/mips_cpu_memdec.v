@@ -115,7 +115,7 @@ module mips_cpu_memdec(
             endcase
         end
 
-        6'b100010 : begin //LWR
+        6'b100110 : begin //LWR
             case(be_signal)
             4'b0001 : data_out={rt_byte0, rt_byte1, rt_byte2, byte0};
             4'b0011 : data_out={rt_byte0, rt_byte1, byte0, byte1};

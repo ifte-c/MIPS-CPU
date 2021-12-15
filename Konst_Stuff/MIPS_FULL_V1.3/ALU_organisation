@@ -1,0 +1,9 @@
+The ALU is going to include:
+
+1. Adder-Subtracter-Logic Block
+2. Multiplier Block
+3. Divider Block
+
+
+How the ALU deals with instructions:
+1. Instruction comes in form Instruction Register in EXEC2

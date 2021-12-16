@@ -58,7 +58,7 @@ VALID_INSTRUCTIONS=(
 
 for (( i = 0; i < ${#VALID_INSTRUCTIONS[@]}; i++ ))
 do
-    for j in testbenches/*.v
+    for j in ../test/testbenches/*.v
     do
     m=0
     k=$(echo $(basename $j) | cut -d'_' -f 1)

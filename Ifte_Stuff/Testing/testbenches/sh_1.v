@@ -19,10 +19,7 @@ module sh_1();
     //memory should only receive word address
     logic[4:0] mappedaddress;
     always_comb begin
-        if(address==0) begin
-            readdata=0;
-        end
-        else begin
+        if(address!=0) begin
             mappedaddress=(address-32'hBFC00000)/4;
         end
     end

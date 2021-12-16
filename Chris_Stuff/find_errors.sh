@@ -264,7 +264,7 @@ do
         if [[ $? -ne 0 ]]
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
-            echo "Runtime Error" 1>&2
+            echo "Runtime Error"
             ./"$EXECUTABLE_DIRECTORY"/${LINE[1]} 2>&1
             echo
             counter=$((counter+1))     
@@ -297,7 +297,7 @@ do
         if [[ $? -ne 0 ]]
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
-            echo "Runtime Error" 1>&2
+            echo "Runtime Error"
             ./"$EXECUTABLE_DIRECTORY"/${LINE[1]} 2>&1
             echo
             counter=$((counter+1))         

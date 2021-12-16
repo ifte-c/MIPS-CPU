@@ -19,10 +19,7 @@ module mips_cpu_test();
     //memory should only receive word address
     logic[4:0] mappedaddress;
     always_comb begin
-        if(address==0) begin
-            readdata=0;
-        end
-        else begin
+        if(address!=0) begin
             mappedaddress=(address-32'hBFC00000)/4;
         end
     end
@@ -37,33 +34,41 @@ module mips_cpu_test();
         end
 
         memory[0] = 32'h3C08BFC0;
-        memory[1] = 32'h8D09002C;
-        memory[2] = 32'h00000008;
-        memory[3] = 32'h392200FF;
-        memory[11] = 32'hffff0000;
+        memory[1] = 32'h8D090018;
+        memory[2] = 32'h8D0A001C;
+        memory[3] = 32'h00000008;
+        memory[4] = 32'h012A1021;
+        memory[5] = 32'h00000000;
+        memory[6] = 32'h0000006F;
+        memory[7] = 32'h00000064;
         
     end
 
     
     always @(posedge clk) begin
-        if(write) begin
-            case(byteenable)
-            //sw
-            4'b0000 : memory[mappedaddress]<=writedata;//no byteenable asserted, just regular write
-            //sb
-            4'b0001 : memory[mappedaddress]<={writedata[7:0], memory[mappedaddress][23:0]};
-            4'b0010 : memory[mappedaddress]<={memory[mappedaddress][31:24], writedata[7:0] ,memory[mappedaddress][15:0]};
-            4'b0100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[7:0] ,memory[mappedaddress][7:0]};
-            4'b1000 : memory[mappedaddress]<={memory[mappedaddress][31:8], writedata[7:0]};
-            //sh
-            4'b0011 : memory[mappedaddress]<={writedata[15:0], memory[mappedaddress][15:0]};
-            4'b1100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[15:0]};
-            //sw
-            4'b1111 : memory[mappedaddress]<=writedata;
-            endcase
+        if(address==0) begin
+            readdata<=0;
         end
-        if (read) begin
-            readdata<=memory[mappedaddress];
+        else begin
+            if(write) begin
+                case(byteenable)
+                //sw
+                4'b0000 : memory[mappedaddress]<=writedata;//no byteenable asserted, just regular write
+                //sb
+                4'b0001 : memory[mappedaddress]<={writedata[7:0], memory[mappedaddress][23:0]};
+                4'b0010 : memory[mappedaddress]<={memory[mappedaddress][31:24], writedata[7:0] ,memory[mappedaddress][15:0]};
+                4'b0100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[7:0] ,memory[mappedaddress][7:0]};
+                4'b1000 : memory[mappedaddress]<={memory[mappedaddress][31:8], writedata[7:0]};
+                //sh
+                4'b0011 : memory[mappedaddress]<={writedata[15:0], memory[mappedaddress][15:0]};
+                4'b1100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[15:0]};
+                //sw
+                4'b1111 : memory[mappedaddress]<=writedata;
+                endcase
+            end
+            if (read) begin
+                readdata<=memory[mappedaddress];
+            end
         end
     end
     
@@ -81,7 +86,7 @@ module mips_cpu_test();
         //if register_v0 does not have correct value, also fail the testbench
         if (active==0) begin 
             //$display("%h",memory[12]);
-            assert(register_v0==32'hffff00ff) else $fatal(1,"Wrong Value in v0, %h", register_v0);
+            assert(register_v0==32'h000000D3) else $fatal(1,"Wrong Value in v0, %h", register_v0);
             $finish;
         end
         $fatal(1,"Failed to complete in time");

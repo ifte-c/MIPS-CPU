@@ -1,0 +1,3 @@
+check whether values have omitted zeroes
+two instr after mfhi/mflo cant modify hi/lo register otherwise undefined
+lwl and lwr need testing for making sure digits are in the correct order in lwl and lwr.

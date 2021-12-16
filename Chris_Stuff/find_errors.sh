@@ -17,9 +17,6 @@ SOURCE_DIRECTORY="$1"
 INSTRUCTION="${2-all}"
 
 #relative paths from the main folder to where the testbench files are and where the executable files should be stored
-#mkdir test/testbenches
-mkdir test/executables
-
 TESTBENCH_DIRECTORY="test/testbenches"
 EXECUTABLE_DIRECTORY="test/executables"
 
@@ -80,9 +77,15 @@ VALID_INSTRUCTIONS=(
 #check if the requested instruction is valid. Exit otherwise
 if [[ ! ( " ${VALID_INSTRUCTIONS[*]} " =~ " $INSTRUCTION " || "$INSTRUCTION" == "all" ) ]]
 then
-    echo "EXIT CODE 1: The instruction parameter is not valid">&2
+    echo "EXIT CODE 1: The instruction parameter is not valid"
     exit 1
 fi
+
+#mkdir test/testbenches
+mkdir test/executables
+
+echo "Running testbenches on '$SOURCE_DIRECTORY' for the instruction '$INSTRUCTION'"
+echo "==========================="
 
 #######################################
 #all our testbenches must both be stored in /test/testbenches and listed in the array below
@@ -305,7 +308,7 @@ do
 done
 
 echo "==========================="
-echo "Finished running testbenches for the instruction '$INSTRUCTION'"
+echo "Finished running testbenches on '$SOURCE_DIRECTORY' for the instruction '$INSTRUCTION'"
 echo "Total number of fails: $counter"
 
 #delete all executables at the end

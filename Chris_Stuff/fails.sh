@@ -234,7 +234,6 @@ TESTBENCHES=(
 
 #bash does not (easily) support multidimensional arrays, so I used a workaround
 #loop over every testbench in the array, ie each string
-counter=0
 for (( i = 0; i < ${#TESTBENCHES[@]}; i++ ))
 do
     #delimit the string by ; to create a new (temporary) array for this iteration called LINE, consisting of the three entries entered before
@@ -249,10 +248,7 @@ do
         if [[ $? -ne 0 ]]
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
-            echo "Compilation Error"
-            iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" $SOURCE_DIRECTORY/mips_cpu_*.v 2>&1
-            echo
-            counter=$((counter+1))
+            echo "Compilation Error" 1>&2
             continue
         fi
 
@@ -262,9 +258,6 @@ do
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
             echo "Runtime Error" 1>&2
-            ./"$EXECUTABLE_DIRECTORY"/${LINE[1]} 2>&1
-            echo
-            counter=$((counter+1))     
             continue
         fi
 
@@ -284,10 +277,7 @@ do
         if [[ $? -ne 0 ]]
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
-            echo "Compilation Error"
-            iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" $SOURCE_DIRECTORY/mips_cpu_*.v 2>&1
-            echo
-            counter=$((counter+1))         
+            echo "Compilation Error" 1>&2
             continue
         fi
         ./"$EXECUTABLE_DIRECTORY"/${LINE[1]} 1>&2
@@ -295,18 +285,11 @@ do
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
             echo "Runtime Error" 1>&2
-            ./"$EXECUTABLE_DIRECTORY"/${LINE[1]} 2>&1
-            echo
-            counter=$((counter+1))         
             continue
         fi
         #echo "${LINE[1]} ${LINE[0]} Pass ${LINE[2]}"
     fi
 done
-
-echo "==========================="
-echo "Finished running testbenches for the instruction '$INSTRUCTION'"
-echo "Total number of fails: $counter"
 
 #delete all executables at the end
 rm -r ""$EXECUTABLE_DIRECTORY/*"" 1>&2

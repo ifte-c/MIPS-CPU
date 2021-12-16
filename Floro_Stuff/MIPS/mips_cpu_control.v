@@ -376,7 +376,7 @@ module mips_cpu_control(
                 reg_write=0;
                 branch=1;
             end
-            6'b000110 : begin//BNE
+            6'b000101 : begin//BNE
                 ALUop=22;
                 ALU_srcB=0;
                 PC_write=1;

@@ -17,7 +17,7 @@ module alu(
 );
 
 
-    logic[31:0] als_out;
+    logic[31:0] asl_out;
     logic[31:0] shift_out;
 
 
@@ -27,12 +27,12 @@ module alu(
     always_comb begin
         if(opcode == 0) begin
             if(als_shift == 1'b1) begin
-                alu_out = als_out;
+                alu_out = asl_out;
             end else begin
                 alu_out = shift_out;
             end
         end else begin
-            alu_out = als_out;
+            alu_out = asl_out;
         end
     end
 
@@ -40,7 +40,7 @@ module alu(
     .funct(funct), 
     .op1(op1), 
     .op2(op2), 
-    .add_sub_out(als_out), 
+    .add_sub_out(asl_out), 
     .branch_conditions(branch_conditions)
     );
 

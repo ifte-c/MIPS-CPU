@@ -23,7 +23,7 @@ module add_sub_logic(
 
 
     always_comb begin
-        if (opcode == 000000) begin
+        if (opcode == 6'b000000) begin
 
             /*add_sub_out = funct == 100001 ? add_res : 
             funct == 100010 ? sub_res :
@@ -38,7 +38,23 @@ module add_sub_logic(
             6'b100101 : add_sub_out = or_res;
             6'b100110 : add_sub_out = xor_res;
             endcase 
-            
+
+            if (funct == 6'b101010) begin
+                if ($signed(op1) < $signed(op2)) begin
+                    add_sub_out = 32'd1;
+                end
+                else begin
+                    add_sub_out = 32'd0;
+                end
+            end
+            else if (funct == 6'b101011) begin
+                if (op1 < op2) begin
+                    add_sub_out = 32'd1;
+                end
+                else begin
+                    add_sub_out = 32'd0;
+                end
+            end
 
         end else begin
 
@@ -64,6 +80,23 @@ module add_sub_logic(
             6'b001110 : add_sub_out = xor_res;
             endcase
 
+            if (opcode == 6'b001010) begin
+                if ($signed(op1) < $signed(op2)) begin
+                    add_sub_out = 32'd1;
+                end
+                else begin
+                    add_sub_out = 32'd0;
+                end
+            end
+            else if (opcode == 6'b001011) begin
+                if (op1 < op2) begin
+                    add_sub_out = 32'd1;
+                end
+                else begin
+                    add_sub_out = 32'd0;
+                end
+            end
+
         end
 
         /*branch_conditions[2:0] = op1 < 0 ? 3'b001 :
@@ -79,6 +112,8 @@ module add_sub_logic(
         end 
 
         branch_conditions[3] = (op1 == op2 ? 1 : 0);
+
+        
         
     end
 

@@ -1,4 +1,4 @@
-module mips_cpu_test();
+module xori_3();
 
     logic clk;
     logic reset;
@@ -41,7 +41,6 @@ module mips_cpu_test();
         memory[2] = 32'h00000008;
         memory[3] = 32'h392200FF;
         memory[11] = 32'hffff0000;
-        
     end
 
     
@@ -69,8 +68,8 @@ module mips_cpu_test();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("xori_3.vcd");
+        $dumpvars(0,  xori_3);
         clk=0;
         repeat (10000) begin
             #10;
@@ -97,7 +96,6 @@ module mips_cpu_test();
         #10
         assert(active==1) else $fatal(1, "Active did not go high");
 
-        
     end
 
 

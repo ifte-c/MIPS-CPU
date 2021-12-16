@@ -1,4 +1,4 @@
-module mips_cpu_test();
+module sltiu_1();
 
     logic clk;
     logic reset;
@@ -39,8 +39,8 @@ module mips_cpu_test();
         memory[0] = 32'h3C08BFC0;
         memory[1] = 32'h8D09002C;
         memory[2] = 32'h00000008;
-        memory[3] = 32'h392200FF;
-        memory[11] = 32'hffff0000;
+        memory[3] = 32'h2D220002;
+        memory[11] = 32'd1;
         
     end
 
@@ -69,8 +69,8 @@ module mips_cpu_test();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("sltiu_1.vcd");
+        $dumpvars(0,  sltiu_1);
         clk=0;
         repeat (10000) begin
             #10;
@@ -81,7 +81,7 @@ module mips_cpu_test();
         //if register_v0 does not have correct value, also fail the testbench
         if (active==0) begin 
             //$display("%h",memory[12]);
-            assert(register_v0==32'hffff00ff) else $fatal(1,"Wrong Value in v0, %h", register_v0);
+            assert(register_v0==32'd1) else $fatal(1,"Wrong Value in v0, %h", register_v0);
             $finish;
         end
         $fatal(1,"Failed to complete in time");

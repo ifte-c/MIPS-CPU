@@ -449,7 +449,7 @@ module mips_cpu_control(
             6'b101000 : begin//SB
                 ALUop=0;
                 ALU_srcB=2;
-                mem_read=1;
+                mem_read=0;
                 mem_write=1;
                 IoD=1;
                 reg_write=0;
@@ -457,7 +457,7 @@ module mips_cpu_control(
             6'b101001 : begin//SH
                 ALUop=0;
                 ALU_srcB=2;
-                mem_read=1;
+                mem_read=0;
                 mem_write=1;
                 IoD=1;
                 reg_write=0;
@@ -473,10 +473,15 @@ module mips_cpu_control(
             6'b101011 : begin//SW
                 ALUop=0;
                 ALU_srcB=2;
-                mem_read=1;
+                mem_read=0;
                 mem_write=1;
                 IoD=1;
                 reg_write=0;
+            end
+            6'b001110 : begin
+                ALUop=8;
+                ALU_srcB=2;
+                extend=1;
             end            
             endcase
         end

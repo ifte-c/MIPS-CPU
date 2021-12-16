@@ -42,12 +42,12 @@ module mips_cpu_PC(
                 BoJ <= nxt_pc_val;                            //stores branch delay
                 BoJ_flag <= 1;
             end
-            if((counter==2) && (instr_type<2)) begin     //checks for instr.type and
+            if((counter==1) && (instr_type<2)) begin     //checks for instr.type and
                 pc_val <= BoJ;                            // corresponding counter
                 counter <=0;
                 BoJ_flag <=0;
             end
-            else if((counter==3) && (instr_type==2)) begin
+            else if((counter>2) && (instr_type>=2)) begin
                 pc_val <= BoJ;
                 counter <=0;
                 BoJ_flag <=0;
@@ -56,7 +56,7 @@ module mips_cpu_PC(
     end
 
 
-    always_ff @(negedge clk) begin//counter to ensure branch delay works
+    always_ff @(posedge clk) begin//counter to ensure branch delay works
         if (waitrequest==0) begin
             if(BoJ_flag==1) begin
                 counter <= counter+1;

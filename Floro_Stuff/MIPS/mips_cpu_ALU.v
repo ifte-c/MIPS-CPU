@@ -13,7 +13,7 @@ module mips_cpu_ALU(
     assign ALU_lo=tmp[31:0];
 
     logic[4:0] tmp_shift;//for variable shifts
-    assign tmp_shift= rt[4:0];
+    assign tmp_shift= rs[4:0];
 
     always_comb begin
 
@@ -54,27 +54,27 @@ module mips_cpu_ALU(
         end
 
         else if(ALU_ctrl==9) begin//shift left
-            ALU_out = rs << shift;
+            ALU_out = rt << shift;
         end
 
         else if(ALU_ctrl==10) begin//shift left variable
-            ALU_out = rs << tmp_shift;
+            ALU_out = rt << tmp_shift;
         end
 
         else if(ALU_ctrl==11) begin//shift right logical
-            ALU_out = rs >> shift;
+            ALU_out = rt >> shift;
         end
 
         else if(ALU_ctrl==12) begin//shift right logical variable
-            ALU_out = rs >> tmp_shift;
+            ALU_out = rt >> tmp_shift;
         end
 
         else if(ALU_ctrl==13) begin//shift right arithmetic
-            ALU_out = $signed(rs) >>> shift;
+            ALU_out = $signed(rt) >>> shift;
         end
 
         else if(ALU_ctrl==14) begin//shift right arithmetic variable
-            ALU_out = $signed(rs) >>> tmp_shift;
+            ALU_out = $signed(rt) >>> tmp_shift;
         end
 
         else if(ALU_ctrl==15) begin//equals

@@ -74,7 +74,7 @@ module beq_1();
     
 
     initial begin
-        $dumpfile("mips_cpu_beq_1.vcd");
+        $dumpfile("beq_1.vcd");
         $dumpvars(0,  beq_1);
         clk=0;
         repeat (10000) begin

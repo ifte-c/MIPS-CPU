@@ -74,8 +74,8 @@ module bne_2();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("bne_2.vcd");
+        $dumpvars(0,  bne_2);
         clk=0;
         repeat (10000) begin
             #10;
@@ -86,7 +86,7 @@ module bne_2();
         //if register_v0 does not have correct value, also fail the testbench
         if (active==0) begin 
             //$display("%h",memory[12]);
-            assert(register_v0==32'h0000FFFF) else $fatal(1,"Wrong Value in v0, %h", register_v0);
+            assert(register_v0==32'hFFFF0000) else $fatal(1,"Wrong Value in v0, %h", register_v0);
             $finish;
         end
         $fatal(1,"Failed to complete in time");

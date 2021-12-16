@@ -74,8 +74,8 @@ module bgtz_2();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("bgtz_2.vcd");
+        $dumpvars(0,  bgtz_2);
         clk=0;
         repeat (10000) begin
             #10;

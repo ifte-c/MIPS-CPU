@@ -70,8 +70,8 @@ module andi_3();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("andi_3.vcd");
+        $dumpvars(0,  andi_3);
         clk=0;
         repeat (10000) begin
             #10;

@@ -70,8 +70,8 @@ module addiu_1();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("addiu_1.vcd");
+        $dumpvars(0,  addiu_1);
         clk=0;
         repeat (10000) begin
             #10;

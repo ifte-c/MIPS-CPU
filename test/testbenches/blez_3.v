@@ -74,8 +74,8 @@ module blez_3();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("blez_3.vcd");
+        $dumpvars(0,  blez_3);
         clk=0;
         repeat (10000) begin
             #10;

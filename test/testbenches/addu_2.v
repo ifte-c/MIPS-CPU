@@ -71,8 +71,8 @@ module addu_2();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("addu_2.vcd");
+        $dumpvars(0,  addu_2);
         clk=0;
         repeat (10000) begin
             #10;

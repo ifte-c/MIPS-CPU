@@ -74,8 +74,8 @@ module bne_1();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("bne_1.vcd");
+        $dumpvars(0,  bne_1);
         clk=0;
         repeat (10000) begin
             #10;

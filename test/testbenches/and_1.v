@@ -71,8 +71,8 @@ module and_1();
     
 
     initial begin
-        $dumpfile("mips_cpu_test.vcd");
-        $dumpvars(0,  mips_cpu_test);
+        $dumpfile("and_1.vcd");
+        $dumpvars(0,  and_1);
         clk=0;
         repeat (10000) begin
             #10;

@@ -80,7 +80,7 @@ module sb_3();
         //if register_v0 does not have correct value, also fail the testbench
         if (active==0) begin 
             //$display("%h",memory[12]);
-            assert(mem[12]==32'h0000f300) else $fatal(1,"Wrong Value in v0, %h", register_v0);
+            assert(memory[12]==32'h0000f300) else $fatal(1,"Wrong Value in v0, %h", register_v0);
             $finish;
         end
         $fatal(1,"Failed to complete in time");

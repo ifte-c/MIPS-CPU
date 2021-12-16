@@ -29,6 +29,7 @@ module mips_cpu_PC(
         if(reset==1) begin//stores value 0 during reset
             pc_val <= 32'hBFC00000;
             BoJ <= 0;
+            BoJ_flag <= 0;
             counter <= 0;
         end
     end

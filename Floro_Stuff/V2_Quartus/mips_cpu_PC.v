@@ -30,6 +30,7 @@ module mips_cpu_PC(
             pc_val <= 32'hBFC00000;
             BoJ <= 0;
             counter <= 0;
+            BoJ_flag <= 0;
         end
     end
 

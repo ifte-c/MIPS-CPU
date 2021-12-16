@@ -34,13 +34,10 @@ module mips_cpu_test();
         end
 
         memory[0] = 32'h3C08BFC0;
-        memory[1] = 32'h8D090018;
-        memory[2] = 32'h8D0A001C;
-        memory[3] = 32'h00000008;
-        memory[4] = 32'h012A1021;
-        memory[5] = 32'h00000000;
-        memory[6] = 32'h0000006F;
-        memory[7] = 32'h00000064;
+        memory[1] = 32'h8D09002C;
+        memory[2] = 32'h00000008;
+        memory[3] = 32'hA1090030;
+        memory[11] = 32'h000000f3;
         
     end
 
@@ -86,7 +83,7 @@ module mips_cpu_test();
         //if register_v0 does not have correct value, also fail the testbench
         if (active==0) begin 
             //$display("%h",memory[12]);
-            assert(register_v0==32'h000000D3) else $fatal(1,"Wrong Value in v0, %h", register_v0);
+            assert(memory[12]==32'hf3000000) else $fatal(1,"Wrong Value in v0, %h", register_v0);
             $finish;
         end
         $fatal(1,"Failed to complete in time");

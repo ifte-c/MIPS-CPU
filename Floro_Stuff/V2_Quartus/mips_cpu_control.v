@@ -16,7 +16,8 @@ module mips_cpu_control(
     output logic ALU_srcA,
     output logic[1:0] ALU_srcB,
     output logic[4:0] ALUop,
-    output logic[1:0] PC_src,
+    output logic ALUreg_en,
+    output logic[2:0] PC_src,
     output logic PC_write,
     output logic PC_write_cond,
     output logic lo_sel,
@@ -26,7 +27,8 @@ module mips_cpu_control(
     output logic IoD,
     output logic extend,
     output logic[1:0] instr_type,
-    output logic active
+    output logic active,
+    output logic branch
 );
 
     typedef enum logic[2:0]{
@@ -42,12 +44,12 @@ module mips_cpu_control(
 
     
   
-    always_comb begin
-        if((op==6'b100000)||(op==6'b100100)||(op==6'b100001)||(op==6'b100101)||(op==6'b100011)||(op==6'b100010)||(op==6'b100110)) begin
-            instr_type=2;//load
-        end
-        else if(((op==6'b000001) && ((rt==5'b10001)||(rt==5'b10000))) || ((op==0) && (func==6'b001001)) || (op==000011)) begin
+    always @(*) begin
+        if((op==6'b000011)||((op==6'b000001) && ((rt==5'b10001)||(rt==5'b10000))) || ((op==0) && (func==6'b001001))) begin
             instr_type=3;//link
+        end
+        else if((op==6'b100000)||(op==6'b100100)||(op==6'b100001)||(op==6'b100101)||(op==6'b100011)||(op==6'b100010)||(op==6'b100110)) begin
+            instr_type=2;//load
         end
         else if((op==6'b101000)||(op==6'b101001)||(op==6'b101011)) begin
             instr_type=1;//store
@@ -93,7 +95,7 @@ module mips_cpu_control(
                 end
             end
 
-            else if(state==EX && instr_type>=2) begin//Execute cycle, continue to access memory cycle
+            else if(state==EX && instr_type>1) begin//Execute cycle, continue to access memory cycle
                 if(waitrequest==1 && (instr_type==2)) begin
                     state<=EX;
                 end
@@ -129,6 +131,8 @@ module mips_cpu_control(
             hi_en=0;
             IoD=0;
             extend=0;
+            ALUreg_en=0;
+            branch=0;
         end
         else if(state==IF) begin//Fetch cycle
             mem_write=0;
@@ -149,6 +153,8 @@ module mips_cpu_control(
             hi_en=0;
             IoD=0;
             extend=0;
+            ALUreg_en=1;
+            branch=0;
             case(waitrequest)
                 0 : PC_write=1;
                 1 : PC_write=0;
@@ -166,7 +172,7 @@ module mips_cpu_control(
             ALU_srcA=0;
             ALU_srcB=2'b11;
             ALUop=0;
-            PC_src=2'b01;
+            PC_src=2'b00;
             PC_write=0;
             PC_write_cond=0;
             lo_sel=0;
@@ -175,6 +181,8 @@ module mips_cpu_control(
             hi_en=0;
             IoD=0;
             extend=0;
+            ALUreg_en=0;
+            branch=0;
         end
 
         else if(state==EX) begin//Execute cycle non memory type
@@ -186,7 +194,7 @@ module mips_cpu_control(
             IR_write=0;//IR registter not changed during Exec cycle
             IR_sel=0;
             IoD=0;// only change for memory loads
-            PC_src=0;//program counter used only by jump/branch in Exec
+            PC_src=4;//program counter used only by jump/branch in Exec
             PC_write=0;
             PC_write_cond=0;
             lo_sel=0;//only six operations use the LO/HI registers
@@ -195,6 +203,8 @@ module mips_cpu_control(
             hi_en=0;
             ALU_srcA=1;//only jump uses PC+4 value during Exec 
             extend=0;//most instructions require sign extension
+            ALUreg_en=0;
+            branch=0;
             case(op)
             0 : begin//R-Type instructions
 
@@ -304,6 +314,7 @@ module mips_cpu_control(
                 PC_write=1;
                 PC_write_cond=1;
                 reg_write=0;
+                branch=1;
             end
             6'b000001 : begin
                 case(rt)
@@ -313,6 +324,7 @@ module mips_cpu_control(
                     PC_write=1;
                     PC_write_cond=1;
                     reg_write=0;
+                    branch=1;
                 end
                 5'b10001 : begin//BGEZAL
                     ALUop=16;
@@ -320,6 +332,7 @@ module mips_cpu_control(
                     PC_write=1;
                     PC_write_cond=1;
                     reg_write=0;
+                    branch=1;
                 end
                 5'b10001 : begin//BGEZAL
                     ALUop=16;
@@ -327,6 +340,7 @@ module mips_cpu_control(
                     PC_write=1;
                     PC_write_cond=1;
                     reg_write=0;
+                    branch=1;
                 end
                 5'b00000 : begin//BLTZ
                     ALUop=19;
@@ -334,6 +348,7 @@ module mips_cpu_control(
                     PC_write=1;
                     PC_write_cond=1;
                     reg_write=0;
+                    branch=1;
                 end
                 5'b10000 : begin//BLTZAL
                     ALUop=19;
@@ -341,6 +356,7 @@ module mips_cpu_control(
                     PC_write=1;
                     PC_write_cond=1;
                     reg_write=0;
+                    branch=1;
                 end
                 endcase
             end
@@ -350,6 +366,7 @@ module mips_cpu_control(
                 PC_write=1;
                 PC_write_cond=1;
                 reg_write=0;
+                branch=1;
             end
             6'b000110 : begin//BLEZ
                 ALUop=18;
@@ -357,6 +374,7 @@ module mips_cpu_control(
                 PC_write=1;
                 PC_write_cond=1;
                 reg_write=0;
+                branch=1;
             end
             6'b000110 : begin//BNE
                 ALUop=22;
@@ -364,6 +382,7 @@ module mips_cpu_control(
                 PC_write=1;
                 PC_write_cond=1;
                 reg_write=0;
+                branch=1;
             end
             6'b000010 : begin//J
                 ALUop=24;
@@ -449,7 +468,7 @@ module mips_cpu_control(
             6'b101000 : begin//SB
                 ALUop=0;
                 ALU_srcB=2;
-                mem_read=1;
+                mem_read=0;
                 mem_write=1;
                 IoD=1;
                 reg_write=0;
@@ -457,7 +476,7 @@ module mips_cpu_control(
             6'b101001 : begin//SH
                 ALUop=0;
                 ALU_srcB=2;
-                mem_read=1;
+                mem_read=0;
                 mem_write=1;
                 IoD=1;
                 reg_write=0;
@@ -473,7 +492,7 @@ module mips_cpu_control(
             6'b101011 : begin//SW
                 ALUop=0;
                 ALU_srcB=2;
-                mem_read=1;
+                mem_read=0;
                 mem_write=1;
                 IoD=1;
                 reg_write=0;
@@ -507,6 +526,8 @@ module mips_cpu_control(
                 hi_en=0;
                 IoD=0;
                 extend=0;
+                ALUreg_en=0;
+                branch=0;
             end
             else begin
                 mem_write=0;
@@ -528,6 +549,8 @@ module mips_cpu_control(
                 hi_en=0;
                 IoD=0;
                 extend=0;
+                ALUreg_en=0;
+                branch=0;
             end
         end
     end

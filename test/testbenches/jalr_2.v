@@ -78,8 +78,8 @@ module jalr_2();
     
 
     initial begin
-        $dumpfile("jarl_2.vcd");
-        $dumpvars(0,  jarl_2);
+        $dumpfile("jalr_2.vcd");
+        $dumpvars(0,  jalr_2);
         clk=0;
         repeat (10000) begin
             #10;

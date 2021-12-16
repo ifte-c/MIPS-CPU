@@ -24,7 +24,7 @@ module mips_cpu_bus(
     logic ALU_srcA;
     logic[1:0] ALU_srcB;
     logic[4:0] ALUop;
-    logic[1:0] PC_src;
+    logic[2:0] PC_src;
     logic PC_write;
     logic PC_write_cond;
     logic lo_sel;
@@ -74,6 +74,10 @@ module mips_cpu_bus(
     logic[31:0] jumpaddress;
     logic[31:0] mem_paddr;
     logic PC_write_condcomb;
+    logic PC_write_comb;
+    logic ALUreg_en;
+    logic[31:0] ALUout_branch; 
+    logic branch;
 
 
 
@@ -150,13 +154,17 @@ module mips_cpu_bus(
         .data_in(hi_in), .data_out(hi_out), .clk(clk), .reset(reset), .enable(hi_en)
     );
 
-    mips_cpu_holdreg ALUo(
-        .data_in(ALUout), .data_out(ALUout_delay), .clk(clk), .reset(reset)
+    mips_cpu_holdregALU ALUo(
+        .data_in(ALUout), .data_out(ALUout_delay), .ALUreg_en(ALUreg_en), .clk(clk), .reset(reset)
     );
 
-    mips_cpu_Mux4 mips_pc_mux(
+    mips_cpu_holdreg ALUbranch(
+        .data_in(ALUout), .data_out(ALUout_branch), .clk(clk), .reset(reset)
+    );
+
+    mips_cpu_Mux5 mips_pc_mux(
         .input_0(ALUout_delay), .input_1(ALUout), .input_2(jumpaddress),
-        .input_3(reg_A), .out(PC_in), .select(PC_src)
+        .input_3(reg_A), .input_4(ALUout_branch), .out(PC_in), .select(PC_src)
     );
 
     mips_cpu_jadrs j_adrs(
@@ -164,7 +172,7 @@ module mips_cpu_bus(
     );
 
     mips_cpu_PC mips_pc(
-        .nxt_pc_val(PC_in), .pc_ctrl(PC_write), .pc_write_cond(PC_write_condcomb),
+        .nxt_pc_val(PC_in), .pc_ctrl(PC_write_comb), .pc_write_cond(PC_write_condcomb),
         .instr_type(instr_type), .clk(clk), .reset(reset), .waitrequest(waitrequest),
         .cur_pc_val(PC_out)
     );
@@ -186,12 +194,21 @@ module mips_cpu_bus(
         .op(op), .func(func), .rt(rt), .clk(clk), .reset(reset), .waitrequest(waitrequest),
         .address(address), .mem_write(write), .mem_read(read), .reg_data_sel(reg_data_sel),
         .reg_dest(reg_dest), .reg_write(reg_write), .IR_write(IR_write), .IR_sel(IR_sel),
-        .ALU_srcA(ALU_srcA), .ALU_srcB(ALU_srcB), .ALUop(ALUop), .PC_src(PC_src), .PC_write(PC_write),
+        .ALU_srcA(ALU_srcA), .ALU_srcB(ALU_srcB), .ALUop(ALUop), .ALUreg_en(ALUreg_en), .PC_src(PC_src), .PC_write(PC_write),
         .PC_write_cond(PC_write_cond), .lo_sel(lo_sel), .hi_sel(hi_sel), .lo_en(lo_en), .hi_en(hi_en),
-        .IoD(IoD), .extend(extend), .instr_type(instr_type), .active(active)
+        .IoD(IoD), .extend(extend), .instr_type(instr_type), .active(active), .branch(branch)
     );
 
     assign PC_write_condcomb = PC_write_cond && ALUout; 
+
+    always @(*) begin
+        if(branch==1) begin
+            PC_write_comb = PC_write && ALUout;
+        end
+        else begin
+            PC_write_comb = PC_write;
+        end
+    end
 
 
 endmodule

@@ -34,25 +34,23 @@ module mips_cpu_PC(
     end
 
     always_ff @(posedge clk) begin 
-        if (waitrequest==0) begin
-            if((pc_ctrl==1) && (pc_write_cond==0)) begin//stores next value
-                pc_val <= nxt_pc_val;
-            end
-            else if((pc_ctrl==1) && (pc_write_cond==1)) begin //branch/jump
-                BoJ <= nxt_pc_val;                            //stores branch delay
-                BoJ_flag <= 1;
-            end
-            if((counter==1) && (instr_type<2)) begin     //checks for instr.type and
-                pc_val <= BoJ;                            // corresponding counter
-                counter <=0;
-                BoJ_flag <=0;
-            end
-            else if((counter>2) && (instr_type>=2)) begin
-                pc_val <= BoJ;
-                counter <=0;
-                BoJ_flag <=0;
-            end
-        end  
+        if((pc_ctrl==1) && (pc_write_cond==0)) begin//stores next value
+            pc_val <= nxt_pc_val;
+        end
+        else if((pc_ctrl==1) && (pc_write_cond==1)) begin //branch/jump
+            BoJ <= nxt_pc_val;                            //stores branch delay
+            BoJ_flag <= 1;
+        end
+        if((counter>=1) && (instr_type<2)) begin     //checks for instr.type and
+            pc_val <= BoJ;                            // corresponding counter
+            counter <=0;
+            BoJ_flag <=0;
+        end
+        else if((counter>2) && (instr_type>=2)) begin
+            pc_val <= BoJ;
+            counter <=0;
+            BoJ_flag <=0;
+        end
     end
 
 

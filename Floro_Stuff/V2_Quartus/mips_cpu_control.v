@@ -173,7 +173,7 @@ module mips_cpu_control(
             ALU_srcB=2'b11;
             ALUop=0;
             PC_src=2'b00;
-            PC_write=0;
+            PC_write=1;
             PC_write_cond=0;
             lo_sel=0;
             hi_sel=0;

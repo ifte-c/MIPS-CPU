@@ -44,7 +44,6 @@ module mips_cpu_bus(
     logic waitreq_sync;
 
     
-    assign immediate_ext={16'b0000000000000000,immediate[15:0]};
     assign write = (state==1 && opcode[5:3]==5)?1:0;
     assign read = state == 0 || (state==1 && opcode[5:3]==4)?1:0;
     assign byteenable = byteenable_log;
@@ -110,6 +109,11 @@ mips_cpu_pc progc(
  store_filter sf(
      .data_in(register_t), .op(opcode),
      .data_out(writedata)
+ );
+
+ immed_ex ie(
+     .opcode(opcode), .immed(immediate),
+     .immed_ex(immediate_ext)
  );
 
 

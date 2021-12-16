@@ -242,7 +242,7 @@ do
     #if we are testing all instructions, no checking is needed: run everything!
     if [[ "$INSTRUCTION" == "all" ]]
     then
-        iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" "$SOURCE_DIRECTORY/mips_cpu_*.v" 1>&2
+        iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" $SOURCE_DIRECTORY/mips_cpu_*.v 1>&2
 
         #check if the testbench successfully compiled and returned 0. if not, fail and skip to the next iteration
         if [[ $? -ne 0 ]]
@@ -273,7 +273,7 @@ do
         fi       
 
         #everything below here is the same as above
-        echo iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" "$SOURCE_DIRECTORY/mips_cpu_*.v" 1>&2
+        iverilog -Wall -g 2012 -s ${LINE[1]} -o "$EXECUTABLE_DIRECTORY"/${LINE[1]} "$TESTBENCH_DIRECTORY"/${LINE[1]}".v" $SOURCE_DIRECTORY/mips_cpu_*.v 1>&2
         if [[ $? -ne 0 ]]
         then
             echo "${LINE[1]} ${LINE[0]} Fail ${LINE[2]}"
@@ -294,3 +294,6 @@ done
 #delete all executables at the end
 rm -r ""$EXECUTABLE_DIRECTORY/*"" 1>&2
 rm -r ""$EXECUTABLE_DIRECTORY"" 1>&2
+
+#delete all vcd files
+rm ""*.vcd"" 1>&2

@@ -19,10 +19,7 @@ module srlv_3();
     //memory should only receive word address
     logic[4:0] mappedaddress;
     always_comb begin
-        if(address==0) begin
-            readdata=0;
-        end
-        else begin
+        if(address!=0) begin
             mappedaddress=(address-32'hBFC00000)/4;
         end
     end
@@ -48,24 +45,29 @@ module srlv_3();
 
     
     always @(posedge clk) begin
-        if(write) begin
-            case(byteenable)
-            //sw
-            4'b0000 : memory[mappedaddress]<=writedata;//no byteenable asserted, just regular write
-            //sb
-            4'b0001 : memory[mappedaddress]<={writedata[7:0], memory[mappedaddress][23:0]};
-            4'b0010 : memory[mappedaddress]<={memory[mappedaddress][31:24], writedata[7:0] ,memory[mappedaddress][15:0]};
-            4'b0100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[7:0] ,memory[mappedaddress][7:0]};
-            4'b1000 : memory[mappedaddress]<={memory[mappedaddress][31:8], writedata[7:0]};
-            //sh
-            4'b0011 : memory[mappedaddress]<={writedata[15:0], memory[mappedaddress][15:0]};
-            4'b1100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[15:0]};
-            //sw
-            4'b1111 : memory[mappedaddress]<=writedata;
-            endcase
+        if(address==0) begin
+            readdata<=0;
         end
-        if (read) begin
-            readdata<=memory[mappedaddress];
+        else begin
+            if(write) begin
+                case(byteenable)
+                //sw
+                4'b0000 : memory[mappedaddress]<=writedata;//no byteenable asserted, just regular write
+                //sb
+                4'b0001 : memory[mappedaddress]<={writedata[7:0], memory[mappedaddress][23:0]};
+                4'b0010 : memory[mappedaddress]<={memory[mappedaddress][31:24], writedata[7:0] ,memory[mappedaddress][15:0]};
+                4'b0100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[7:0] ,memory[mappedaddress][7:0]};
+                4'b1000 : memory[mappedaddress]<={memory[mappedaddress][31:8], writedata[7:0]};
+                //sh
+                4'b0011 : memory[mappedaddress]<={writedata[15:0], memory[mappedaddress][15:0]};
+                4'b1100 : memory[mappedaddress]<={memory[mappedaddress][31:16], writedata[15:0]};
+                //sw
+                4'b1111 : memory[mappedaddress]<=writedata;
+                endcase
+            end
+            if (read) begin
+                readdata<=memory[mappedaddress];
+            end
         end
     end
     

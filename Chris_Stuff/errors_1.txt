@@ -1,0 +1,102 @@
+andi_3 andi Fail 
+Compilation Error
+test/testbenches/andi_3.v: No such file or directory
+error: Unable to find the root module "andi_3" in the Verilog source.
+     : Perhaps ``-s andi_3'' is incorrect?
+1 error(s) during elaboration.
+
+beq_2 beq Fail 
+VCD info: dumpfile beq_2.vcd opened for output.
+FATAL: test/testbenches/beq_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: beq_2
+
+bgez_2 bgez Fail 
+VCD info: dumpfile bgez_2.vcd opened for output.
+FATAL: test/testbenches/bgez_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgez_2
+
+bgezal_2 bgezal Fail 
+VCD info: dumpfile bgezal_2.vcd opened for output.
+FATAL: test/testbenches/bgezal_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgezal_2
+
+bgtz_2 bgtz Fail 
+VCD info: dumpfile bgtz_2.vcd opened for output.
+FATAL: test/testbenches/bgtz_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgtz_2
+
+bgtz_3 bgtz Fail 
+VCD info: dumpfile bgtz_3.vcd opened for output.
+FATAL: test/testbenches/bgtz_3.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgtz_3
+
+blez_3 blez Fail 
+VCD info: dumpfile blez_3.vcd opened for output.
+FATAL: test/testbenches/blez_3.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: blez_3
+
+bltz_1 bltz Fail 
+VCD info: dumpfile bltz_1.vcd opened for output.
+FATAL: test/testbenches/bltz_1.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltz_1
+
+bltz_2 bltz Fail 
+VCD info: dumpfile bltz_2.vcd opened for output.
+FATAL: test/testbenches/bltz_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltz_2
+
+bltzal_1 bltzal Fail 
+VCD info: dumpfile bltzal_1.vcd opened for output.
+FATAL: test/testbenches/bltzal_1.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltzal_1
+
+bltzal_2 bltzal Fail 
+VCD info: dumpfile bltzal_2.vcd opened for output.
+FATAL: test/testbenches/bltzal_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltzal_2
+
+bne_2 bne Fail 
+VCD info: dumpfile bne_2.vcd opened for output.
+FATAL: test/testbenches/bne_2.v:91: Wrong Value in v0, 00000000
+       Time: 100000  Scope: bne_2
+
+jalr_2 jalr Fail 
+Compilation Error
+test/testbenches/jalr_2.v:82: error: Unable to bind wire/reg/memory `jarl_2' in `jalr_2'
+1 error(s) during elaboration.
+
+jal_1 jal Fail 
+VCD info: dumpfile jal_1.vcd opened for output.
+FATAL: test/testbenches/jal_1.v:92: Wrong Value in v0, 00000000
+       Time: 100000  Scope: jal_1
+
+jal_2 jal Fail 
+VCD info: dumpfile jal_2.vcd opened for output.
+FATAL: test/testbenches/jal_2.v:93: Wrong Value in v0, 00000000
+       Time: 100000  Scope: jal_2
+
+ori_1 ori Fail 
+VCD info: dumpfile ori_1.vcd opened for output.
+FATAL: test/testbenches/ori_1.v:85: Wrong Value in v0, ffffffff
+       Time: 100000  Scope: ori_1
+
+ori_2 ori Fail 
+VCD info: dumpfile ori_2.vcd opened for output.
+FATAL: test/testbenches/ori_2.v:85: Wrong Value in v0, 00ffffff
+       Time: 100000  Scope: ori_2
+
+ori_3 ori Fail 
+VCD info: dumpfile ori_3.vcd opened for output.
+FATAL: test/testbenches/ori_3.v:85: Wrong Value in v0, ffff00ff
+       Time: 100000  Scope: ori_3
+
+sb_1 sb Fail 
+Compilation Error
+test/testbenches/sb_1.v:85: syntax error
+test/testbenches/sb_1.v:85: error: Malformed conditional expression.
+
+sh_1 sh Fail 
+Compilation Error
+test/testbenches/sh_1.v:85: syntax error
+test/testbenches/sh_1.v:85: error: Malformed conditional expression.
+

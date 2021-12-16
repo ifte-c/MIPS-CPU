@@ -1,0 +1,457 @@
+VCD info: dumpfile jr_1.vcd opened for output.
+test/testbenches/jr_1.v:93: $finish called at 100000 (1s)
+jr_1 jr Pass 
+VCD info: dumpfile jr_2.vcd opened for output.
+test/testbenches/jr_2.v:92: $finish called at 100000 (1s)
+jr_2 jr Pass 
+VCD info: dumpfile addiu_1.vcd opened for output.
+test/testbenches/addiu_1.v:88: $finish called at 100000 (1s)
+addiu_1 addiu Pass 
+VCD info: dumpfile addiu_2.vcd opened for output.
+test/testbenches/addiu_2.v:89: $finish called at 100000 (1s)
+addiu_2 addiu Pass 
+VCD info: dumpfile addiu_3.vcd opened for output.
+test/testbenches/addiu_3.v:89: $finish called at 100000 (1s)
+addiu_3 addiu Pass 
+VCD info: dumpfile lw_1.vcd opened for output.
+test/testbenches/lw_1.v:85: $finish called at 100000 (1s)
+lw_1 lw Pass 
+VCD info: dumpfile lw_2.vcd opened for output.
+test/testbenches/lw_2.v:85: $finish called at 100000 (1s)
+lw_2 lw Pass 
+VCD info: dumpfile lw_3.vcd opened for output.
+test/testbenches/lw_3.v:85: $finish called at 100000 (1s)
+lw_3 lw Pass 
+VCD info: dumpfile sw_1.vcd opened for output.
+test/testbenches/sw_1.v:86: $finish called at 100000 (1s)
+sw_1 sw Pass 
+VCD info: dumpfile sw_2.vcd opened for output.
+test/testbenches/sw_2.v:86: $finish called at 100000 (1s)
+sw_2 sw Pass 
+VCD info: dumpfile addu_1.vcd opened for output.
+test/testbenches/addu_1.v:89: $finish called at 100000 (1s)
+addu_1 addu Pass 
+VCD info: dumpfile addu_2.vcd opened for output.
+test/testbenches/addu_2.v:89: $finish called at 100000 (1s)
+addu_2 addu Pass 
+VCD info: dumpfile addu_3.vcd opened for output.
+test/testbenches/addu_3.v:89: $finish called at 100000 (1s)
+addu_3 addu Pass 
+VCD info: dumpfile and_1.vcd opened for output.
+test/testbenches/and_1.v:89: $finish called at 100000 (1s)
+and_1 and Pass 
+VCD info: dumpfile and_2.vcd opened for output.
+test/testbenches/and_2.v:89: $finish called at 100000 (1s)
+and_2 and Pass 
+VCD info: dumpfile and_3.vcd opened for output.
+test/testbenches/and_3.v:89: $finish called at 100000 (1s)
+and_3 and Pass 
+VCD info: dumpfile andi_1.vcd opened for output.
+test/testbenches/andi_1.v:88: $finish called at 100000 (1s)
+andi_1 andi Pass 
+VCD info: dumpfile andi_2.vcd opened for output.
+test/testbenches/andi_2.v:88: $finish called at 100000 (1s)
+andi_2 andi Pass 
+test/testbenches/andi_3.v: No such file or directory
+error: Unable to find the root module "andi_3" in the Verilog source.
+     : Perhaps ``-s andi_3'' is incorrect?
+1 error(s) during elaboration.
+andi_3 andi Fail 
+Compilation Error
+VCD info: dumpfile beq_1.vcd opened for output.
+test/testbenches/beq_1.v:92: $finish called at 100000 (1s)
+beq_1 beq Pass 
+VCD info: dumpfile beq_2.vcd opened for output.
+FATAL: test/testbenches/beq_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: beq_2
+beq_2 beq Fail 
+Runtime Error
+VCD info: dumpfile bgez_1.vcd opened for output.
+test/testbenches/bgez_1.v:92: $finish called at 100000 (1s)
+bgez_1 bgez Pass 
+VCD info: dumpfile bgez_2.vcd opened for output.
+FATAL: test/testbenches/bgez_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgez_2
+bgez_2 bgez Fail 
+Runtime Error
+VCD info: dumpfile bgez_3.vcd opened for output.
+test/testbenches/bgez_3.v:92: $finish called at 100000 (1s)
+bgez_3 bgez Pass 
+VCD info: dumpfile bgezal_1.vcd opened for output.
+test/testbenches/bgezal_1.v:92: $finish called at 100000 (1s)
+bgezal_1 bgezal Pass 
+VCD info: dumpfile bgezal_2.vcd opened for output.
+FATAL: test/testbenches/bgezal_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgezal_2
+bgezal_2 bgezal Fail 
+Runtime Error
+VCD info: dumpfile bgezal_3.vcd opened for output.
+test/testbenches/bgezal_3.v:92: $finish called at 100000 (1s)
+bgezal_3 bgezal Pass 
+VCD info: dumpfile bgtz_1.vcd opened for output.
+test/testbenches/bgtz_1.v:92: $finish called at 100000 (1s)
+bgtz_1 bgtz Pass 
+VCD info: dumpfile bgtz_2.vcd opened for output.
+FATAL: test/testbenches/bgtz_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgtz_2
+bgtz_2 bgtz Fail 
+Runtime Error
+VCD info: dumpfile bgtz_3.vcd opened for output.
+FATAL: test/testbenches/bgtz_3.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bgtz_3
+bgtz_3 bgtz Fail 
+Runtime Error
+VCD info: dumpfile blez_1.vcd opened for output.
+test/testbenches/blez_1.v:92: $finish called at 100000 (1s)
+blez_1 blez Pass 
+VCD info: dumpfile blez_2.vcd opened for output.
+test/testbenches/blez_2.v:92: $finish called at 100000 (1s)
+blez_2 blez Pass 
+test/testbenches/blez_3.v:91: warning: extra digits given for sized hex constant.
+VCD info: dumpfile blez_3.vcd opened for output.
+FATAL: test/testbenches/blez_3.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: blez_3
+blez_3 blez Fail 
+Runtime Error
+VCD info: dumpfile bltz_1.vcd opened for output.
+FATAL: test/testbenches/bltz_1.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltz_1
+bltz_1 bltz Fail 
+Runtime Error
+VCD info: dumpfile bltz_2.vcd opened for output.
+FATAL: test/testbenches/bltz_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltz_2
+bltz_2 bltz Fail 
+Runtime Error
+VCD info: dumpfile bltz_3.vcd opened for output.
+test/testbenches/bltz_3.v:92: $finish called at 100000 (1s)
+bltz_3 bltz Pass 
+VCD info: dumpfile bltzal_1.vcd opened for output.
+FATAL: test/testbenches/bltzal_1.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltzal_1
+bltzal_1 bltzal Fail 
+Runtime Error
+VCD info: dumpfile bltzal_2.vcd opened for output.
+FATAL: test/testbenches/bltzal_2.v:91: Wrong Value in v0, ffff0000
+       Time: 100000  Scope: bltzal_2
+bltzal_2 bltzal Fail 
+Runtime Error
+VCD info: dumpfile bltzal_3.vcd opened for output.
+test/testbenches/bltzal_3.v:92: $finish called at 100000 (1s)
+bltzal_3 bltzal Pass 
+VCD info: dumpfile bne_1.vcd opened for output.
+test/testbenches/bne_1.v:92: $finish called at 100000 (1s)
+bne_1 bne Pass 
+VCD info: dumpfile bne_2.vcd opened for output.
+FATAL: test/testbenches/bne_2.v:91: Wrong Value in v0, 00000000
+       Time: 100000  Scope: bne_2
+bne_2 bne Fail 
+Runtime Error
+VCD info: dumpfile div_1.vcd opened for output.
+test/testbenches/div_1.v:93: $finish called at 100000 (1s)
+div_1 div Pass 
+VCD info: dumpfile div_2.vcd opened for output.
+test/testbenches/div_2.v:93: $finish called at 100000 (1s)
+div_2 div Pass 
+VCD info: dumpfile div_3.vcd opened for output.
+test/testbenches/div_3.v:93: $finish called at 100000 (1s)
+div_3 div Pass 
+VCD info: dumpfile divu_1.vcd opened for output.
+test/testbenches/divu_1.v:94: $finish called at 100000 (1s)
+divu_1 divu Pass 
+VCD info: dumpfile divu_2.vcd opened for output.
+test/testbenches/divu_2.v:94: $finish called at 100000 (1s)
+divu_2 divu Pass 
+VCD info: dumpfile divu_3.vcd opened for output.
+test/testbenches/divu_3.v:94: $finish called at 100000 (1s)
+divu_3 divu Pass 
+VCD info: dumpfile j_1.vcd opened for output.
+test/testbenches/j_1.v:93: $finish called at 100000 (1s)
+j_1 j Pass 
+VCD info: dumpfile j_2.vcd opened for output.
+test/testbenches/j_2.v:93: $finish called at 100000 (1s)
+j_2 j Pass 
+VCD info: dumpfile jalr_1.vcd opened for output.
+test/testbenches/jalr_1.v:93: $finish called at 100000 (1s)
+jalr_1 jalr Pass 
+test/testbenches/jalr_2.v:82: error: Unable to bind wire/reg/memory `jarl_2' in `jalr_2'
+1 error(s) during elaboration.
+jalr_2 jalr Fail 
+Compilation Error
+VCD info: dumpfile jal_1.vcd opened for output.
+FATAL: test/testbenches/jal_1.v:92: Wrong Value in v0, 00000000
+       Time: 100000  Scope: jal_1
+jal_1 jal Fail 
+Runtime Error
+VCD info: dumpfile jal_2.vcd opened for output.
+FATAL: test/testbenches/jal_2.v:93: Wrong Value in v0, 00000000
+       Time: 100000  Scope: jal_2
+jal_2 jal Fail 
+Runtime Error
+VCD info: dumpfile lb_1.vcd opened for output.
+test/testbenches/lb_1.v:85: $finish called at 100000 (1s)
+lb_1 lb Pass 
+test/testbenches/lb_2.v:84: warning: extra digits given for sized hex constant.
+VCD info: dumpfile lb_2.vcd opened for output.
+test/testbenches/lb_2.v:85: $finish called at 100000 (1s)
+lb_2 lb Pass 
+VCD info: dumpfile lb_3.vcd opened for output.
+test/testbenches/lb_3.v:85: $finish called at 100000 (1s)
+lb_3 lb Pass 
+VCD info: dumpfile lb_4.vcd opened for output.
+test/testbenches/lb_4.v:85: $finish called at 100000 (1s)
+lb_4 lb Pass 
+VCD info: dumpfile lbu_1.vcd opened for output.
+test/testbenches/lbu_1.v:85: $finish called at 100000 (1s)
+lbu_1 lbu Pass 
+VCD info: dumpfile lbu_2.vcd opened for output.
+test/testbenches/lbu_2.v:85: $finish called at 100000 (1s)
+lbu_2 lbu Pass 
+VCD info: dumpfile lbu_3.vcd opened for output.
+test/testbenches/lbu_3.v:85: $finish called at 100000 (1s)
+lbu_3 lbu Pass 
+VCD info: dumpfile lbu_4.vcd opened for output.
+test/testbenches/lbu_4.v:85: $finish called at 100000 (1s)
+lbu_4 lbu Pass 
+VCD info: dumpfile lh_1.vcd opened for output.
+test/testbenches/lh_1.v:85: $finish called at 100000 (1s)
+lh_1 lh Pass 
+VCD info: dumpfile lh_2.vcd opened for output.
+test/testbenches/lh_2.v:85: $finish called at 100000 (1s)
+lh_2 lh Pass 
+VCD info: dumpfile lhu_1.vcd opened for output.
+test/testbenches/lhu_1.v:85: $finish called at 100000 (1s)
+lhu_1 lhu Pass 
+VCD info: dumpfile lhu_2.vcd opened for output.
+test/testbenches/lhu_2.v:85: $finish called at 100000 (1s)
+lhu_2 lhu Pass 
+VCD info: dumpfile lui_1.vcd opened for output.
+test/testbenches/lui_1.v:83: $finish called at 100000 (1s)
+lui_1 lui Pass 
+VCD info: dumpfile lui_2.vcd opened for output.
+test/testbenches/lui_2.v:83: $finish called at 100000 (1s)
+lui_2 lui Pass 
+VCD info: dumpfile lui_3.vcd opened for output.
+test/testbenches/lui_3.v:83: $finish called at 100000 (1s)
+lui_3 lui Pass 
+VCD info: dumpfile lwl_1.vcd opened for output.
+test/testbenches/lwl_1.v:85: $finish called at 100000 (1s)
+lwl_1 lwl Pass 
+VCD info: dumpfile lwl_2.vcd opened for output.
+test/testbenches/lwl_2.v:85: $finish called at 100000 (1s)
+lwl_2 lwl Pass 
+VCD info: dumpfile lwl_3.vcd opened for output.
+test/testbenches/lwl_3.v:85: $finish called at 100000 (1s)
+lwl_3 lwl Pass 
+VCD info: dumpfile lwl_4.vcd opened for output.
+test/testbenches/lwl_4.v:85: $finish called at 100000 (1s)
+lwl_4 lwl Pass 
+VCD info: dumpfile lwr_1.vcd opened for output.
+test/testbenches/lwr_1.v:85: $finish called at 100000 (1s)
+lwr_1 lwr Pass 
+VCD info: dumpfile lwr_2.vcd opened for output.
+test/testbenches/lwr_2.v:85: $finish called at 100000 (1s)
+lwr_2 lwr Pass 
+VCD info: dumpfile lwr_3.vcd opened for output.
+test/testbenches/lwr_3.v:85: $finish called at 100000 (1s)
+lwr_3 lwr Pass 
+VCD info: dumpfile lwr_4.vcd opened for output.
+test/testbenches/lwr_4.v:85: $finish called at 100000 (1s)
+lwr_4 lwr Pass 
+VCD info: dumpfile mthi_1.vcd opened for output.
+test/testbenches/mthi_1.v:87: $finish called at 100000 (1s)
+mthi_1 mthi Pass 
+VCD info: dumpfile mthi_2.vcd opened for output.
+test/testbenches/mthi_2.v:87: $finish called at 100000 (1s)
+mthi_2 mthi Pass 
+VCD info: dumpfile mthi_3.vcd opened for output.
+test/testbenches/mthi_3.v:87: $finish called at 100000 (1s)
+mthi_3 mthi Pass 
+VCD info: dumpfile mtlo_1.vcd opened for output.
+test/testbenches/mtlo_1.v:87: $finish called at 100000 (1s)
+mtlo_1 mtlo Pass 
+VCD info: dumpfile mtlo_2.vcd opened for output.
+test/testbenches/mtlo_2.v:87: $finish called at 100000 (1s)
+mtlo_2 mtlo Pass 
+VCD info: dumpfile mtlo_3.vcd opened for output.
+test/testbenches/mtlo_3.v:87: $finish called at 100000 (1s)
+mtlo_3 mtlo Pass 
+VCD info: dumpfile mult_1.vcd opened for output.
+test/testbenches/mult_1.v:89: $finish called at 100000 (1s)
+mult_1 mult Pass 
+VCD info: dumpfile mult_2.vcd opened for output.
+test/testbenches/mult_2.v:89: $finish called at 100000 (1s)
+mult_2 mult Pass 
+VCD info: dumpfile mult_3.vcd opened for output.
+test/testbenches/mult_3.v:89: $finish called at 100000 (1s)
+mult_3 mult Pass 
+VCD info: dumpfile multu_1.vcd opened for output.
+test/testbenches/multu_1.v:89: $finish called at 100000 (1s)
+multu_1 multu Pass 
+VCD info: dumpfile multu_2.vcd opened for output.
+test/testbenches/multu_2.v:89: $finish called at 100000 (1s)
+multu_2 multu Pass 
+VCD info: dumpfile multu_3.vcd opened for output.
+test/testbenches/multu_3.v:89: $finish called at 100000 (1s)
+multu_3 multu Pass 
+VCD info: dumpfile or_1.vcd opened for output.
+test/testbenches/or_1.v:88: $finish called at 100000 (1s)
+or_1 or Pass 
+VCD info: dumpfile or_2.vcd opened for output.
+test/testbenches/or_2.v:88: $finish called at 100000 (1s)
+or_2 or Pass 
+VCD info: dumpfile or_3.vcd opened for output.
+test/testbenches/or_3.v:88: $finish called at 100000 (1s)
+or_3 or Pass 
+VCD info: dumpfile ori_1.vcd opened for output.
+FATAL: test/testbenches/ori_1.v:85: Wrong Value in v0, ffffffff
+       Time: 100000  Scope: ori_1
+ori_1 ori Fail 
+Runtime Error
+VCD info: dumpfile ori_2.vcd opened for output.
+FATAL: test/testbenches/ori_2.v:85: Wrong Value in v0, 00ffffff
+       Time: 100000  Scope: ori_2
+ori_2 ori Fail 
+Runtime Error
+VCD info: dumpfile ori_3.vcd opened for output.
+FATAL: test/testbenches/ori_3.v:85: Wrong Value in v0, ffff00ff
+       Time: 100000  Scope: ori_3
+ori_3 ori Fail 
+Runtime Error
+test/testbenches/sb_1.v:85: syntax error
+test/testbenches/sb_1.v:85: error: Malformed conditional expression.
+sb_1 sb Fail 
+Compilation Error
+VCD info: dumpfile sb_2.vcd opened for output.
+test/testbenches/sb_2.v:86: $finish called at 100000 (1s)
+sb_2 sb Pass 
+VCD info: dumpfile sb_3.vcd opened for output.
+test/testbenches/sb_3.v:86: $finish called at 100000 (1s)
+sb_3 sb Pass 
+VCD info: dumpfile sb_4.vcd opened for output.
+test/testbenches/sb_4.v:86: $finish called at 100000 (1s)
+sb_4 sb Pass 
+test/testbenches/sh_1.v:85: syntax error
+test/testbenches/sh_1.v:85: error: Malformed conditional expression.
+sh_1 sh Fail 
+Compilation Error
+VCD info: dumpfile sh_2.vcd opened for output.
+test/testbenches/sh_2.v:86: $finish called at 100000 (1s)
+sh_2 sh Pass 
+VCD info: dumpfile sll_1.vcd opened for output.
+test/testbenches/sll_1.v:86: $finish called at 100000 (1s)
+sll_1 sll Pass 
+VCD info: dumpfile sll_2.vcd opened for output.
+test/testbenches/sll_2.v:86: $finish called at 100000 (1s)
+sll_2 sll Pass 
+VCD info: dumpfile sll_3.vcd opened for output.
+test/testbenches/sll_3.v:86: $finish called at 100000 (1s)
+sll_3 sll Pass 
+VCD info: dumpfile sllv_1.vcd opened for output.
+test/testbenches/sllv_1.v:88: $finish called at 100000 (1s)
+sllv_1 sllv Pass 
+VCD info: dumpfile sllv_2.vcd opened for output.
+test/testbenches/sllv_2.v:88: $finish called at 100000 (1s)
+sllv_2 sllv Pass 
+VCD info: dumpfile sllv_3.vcd opened for output.
+test/testbenches/sllv_3.v:88: $finish called at 100000 (1s)
+sllv_3 sllv Pass 
+VCD info: dumpfile slt_1.vcd opened for output.
+test/testbenches/slt_1.v:89: $finish called at 100000 (1s)
+slt_1 slt Pass 
+VCD info: dumpfile slt_2.vcd opened for output.
+test/testbenches/slt_2.v:89: $finish called at 100000 (1s)
+slt_2 slt Pass 
+VCD info: dumpfile slt_3.vcd opened for output.
+test/testbenches/slt_3.v:89: $finish called at 100000 (1s)
+slt_3 slt Pass 
+VCD info: dumpfile slti_1.vcd opened for output.
+test/testbenches/slti_1.v:87: $finish called at 100000 (1s)
+slti_1 slti Pass 
+VCD info: dumpfile slti_2.vcd opened for output.
+test/testbenches/slti_2.v:87: $finish called at 100000 (1s)
+slti_2 slti Pass 
+VCD info: dumpfile slti_3.vcd opened for output.
+test/testbenches/slti_3.v:87: $finish called at 100000 (1s)
+slti_3 slti Pass 
+VCD info: dumpfile sltiu_1.vcd opened for output.
+test/testbenches/sltiu_1.v:87: $finish called at 100000 (1s)
+sltiu_1 sltiu Pass 
+VCD info: dumpfile sltiu_2.vcd opened for output.
+test/testbenches/sltiu_2.v:87: $finish called at 100000 (1s)
+sltiu_2 sltiu Pass 
+VCD info: dumpfile sltiu_3.vcd opened for output.
+test/testbenches/sltiu_3.v:87: $finish called at 100000 (1s)
+sltiu_3 sltiu Pass 
+VCD info: dumpfile sltu_1.vcd opened for output.
+test/testbenches/sltu_1.v:89: $finish called at 100000 (1s)
+sltu_1 sltu Pass 
+VCD info: dumpfile sltu_2.vcd opened for output.
+test/testbenches/sltu_2.v:89: $finish called at 100000 (1s)
+sltu_2 sltu Pass 
+VCD info: dumpfile sltu_3.vcd opened for output.
+test/testbenches/sltu_3.v:89: $finish called at 100000 (1s)
+sltu_3 sltu Pass 
+VCD info: dumpfile sra_1.vcd opened for output.
+test/testbenches/sra_1.v:87: $finish called at 100000 (1s)
+sra_1 sra Pass 
+VCD info: dumpfile sra_2.vcd opened for output.
+test/testbenches/sra_2.v:87: $finish called at 100000 (1s)
+sra_2 sra Pass 
+VCD info: dumpfile sra_3.vcd opened for output.
+test/testbenches/sra_3.v:87: $finish called at 100000 (1s)
+sra_3 sra Pass 
+VCD info: dumpfile srav_1.vcd opened for output.
+test/testbenches/srav_1.v:89: $finish called at 100000 (1s)
+srav_1 srav Pass 
+VCD info: dumpfile srav_2.vcd opened for output.
+test/testbenches/srav_2.v:89: $finish called at 100000 (1s)
+srav_2 srav Pass 
+VCD info: dumpfile srav_3.vcd opened for output.
+test/testbenches/srav_3.v:89: $finish called at 100000 (1s)
+srav_3 srav Pass 
+VCD info: dumpfile srl_1.vcd opened for output.
+test/testbenches/srl_1.v:87: $finish called at 100000 (1s)
+srl_1 srl Pass 
+VCD info: dumpfile srl_2.vcd opened for output.
+test/testbenches/srl_2.v:87: $finish called at 100000 (1s)
+srl_2 srl Pass 
+VCD info: dumpfile srl_3.vcd opened for output.
+test/testbenches/srl_3.v:87: $finish called at 100000 (1s)
+srl_3 srl Pass 
+VCD info: dumpfile srlv_1.vcd opened for output.
+test/testbenches/srlv_1.v:89: $finish called at 100000 (1s)
+srlv_1 srlv Pass 
+VCD info: dumpfile srlv_2.vcd opened for output.
+test/testbenches/srlv_2.v:89: $finish called at 100000 (1s)
+srlv_2 srlv Pass 
+VCD info: dumpfile srlv_3.vcd opened for output.
+test/testbenches/srlv_3.v:89: $finish called at 100000 (1s)
+srlv_3 srlv Pass 
+VCD info: dumpfile subu_1.vcd opened for output.
+test/testbenches/subu_1.v:88: $finish called at 100000 (1s)
+subu_1 subu Pass 
+VCD info: dumpfile subu_2.vcd opened for output.
+test/testbenches/subu_2.v:88: $finish called at 100000 (1s)
+subu_2 subu Pass 
+VCD info: dumpfile subu_3.vcd opened for output.
+test/testbenches/subu_3.v:88: $finish called at 100000 (1s)
+subu_3 subu Pass 
+VCD info: dumpfile xor_1.vcd opened for output.
+test/testbenches/xor_1.v:88: $finish called at 100000 (1s)
+xor_1 xor Pass 
+VCD info: dumpfile xor_2.vcd opened for output.
+test/testbenches/xor_2.v:88: $finish called at 100000 (1s)
+xor_2 xor Pass 
+VCD info: dumpfile xor_3.vcd opened for output.
+test/testbenches/xor_3.v:88: $finish called at 100000 (1s)
+xor_3 xor Pass 
+VCD info: dumpfile xori_1.vcd opened for output.
+test/testbenches/xori_1.v:86: $finish called at 100000 (1s)
+xori_1 xori Pass 
+VCD info: dumpfile xori_2.vcd opened for output.
+test/testbenches/xori_2.v:86: $finish called at 100000 (1s)
+xori_2 xori Pass 
+VCD info: dumpfile xori_3.vcd opened for output.
+test/testbenches/xori_3.v:86: $finish called at 100000 (1s)
+xori_3 xori Pass 

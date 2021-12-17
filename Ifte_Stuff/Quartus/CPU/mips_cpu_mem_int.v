@@ -1,10 +1,31 @@
-module mips_cpu_memint(
+module mem_int(
     input logic[31:0] cpu_out,
     input logic[5:0] op,
-    input logic[1:0] instr_type,
+    input logic[4:0] rt,
+    input logic[5:0] func,
     output logic[31:0] mem_addr,
     output logic[3:0] byteenable
 );
+
+
+    logic[1:0] instr_type;
+
+     always @(*) begin
+        if((op==6'b100000)||(op==6'b100100)||(op==6'b100001)||(op==6'b100101)||(op==6'b001111)||(op==6'b100011)||(op==6'b100010)||(op==6'b100110)) begin
+            instr_type=2;//load
+        end
+        else if(((op==6'b000001) && ((rt==5'b10001)||(rt==5'b10000))) || ((op==0) && (func==6'b001001)) || (op==000011)) begin
+            instr_type=3;//link
+        end
+        else if((op==6'b101000)||(op==6'b101001)||(op==6'b101011)) begin
+            instr_type=1;//store
+        end
+        else begin
+            instr_type=0;//other
+        end
+    end
+  
+
 
     logic[1:0] byte_idx;
     logic byte0;

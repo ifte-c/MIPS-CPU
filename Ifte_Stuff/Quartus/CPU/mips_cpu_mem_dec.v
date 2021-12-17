@@ -1,11 +1,13 @@
-module mips_cpu_memdec(
+module mem_dec(
     input logic[31:0] data_in,
     input logic[31:0] rt,
     input logic[3:0] byteenable,
     input logic[5:0] op,
     output logic[31:0] data_out,
     input logic clk,
-    input logic reset
+    input logic reset,
+    input logic active,
+    input logic waitrequest
 );
 
     logic[3:0] be_signal;
@@ -115,7 +117,7 @@ module mips_cpu_memdec(
             endcase
         end
 
-        6'b100010 : begin //LWR
+        6'b100110 : begin //LWR
             case(be_signal)
             4'b0001 : data_out={rt_byte0, rt_byte1, rt_byte2, byte0};
             4'b0011 : data_out={rt_byte0, rt_byte1, byte0, byte1};
@@ -132,7 +134,7 @@ module mips_cpu_memdec(
         if(reset==1) begin
             be_signal <= 0;
         end
-        else begin
+        else if (waitrequest == 0 && active == 1) begin
             be_signal <= byteenable;
         end
     end

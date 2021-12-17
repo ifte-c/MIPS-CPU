@@ -73,7 +73,7 @@ module IR(
             immediate=0;
             target=0;
         end
-        else if (state==2 || (state==1 &&  waitreq_offset == 1 && op_msbs == 1)) begin//runtime output behaviour
+        else if (state==2 || (state==1 &&  waitreq_offset == 1 /*&& op_msbs == 1*/)) begin//runtime output behaviour
             op=t_op;
             rs=t_rs;
             rd=t_rd;
@@ -97,7 +97,7 @@ module IR(
 
     always_ff @(posedge clk) begin
         
-        if (state != 0) begin
+        if (state != 0 || (state == 0 && waitreq_offset == 1)) begin
             waitreq_offset <= waitreq_sync;
         end
         if(reset==1) begin//stores value of zero into register during reset

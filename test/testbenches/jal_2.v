@@ -39,9 +39,8 @@ module jal_2();
         memory[3] = 32'h00000008;
         memory[4] = 32'h00000000;
         memory[5] = 32'h00000000;
-        memory[6] = 32'h03E00011;
-        memory[7] = 32'h00000008;
-        memory[8] = 32'h00001010;
+        memory[6] = 32'h00000008;
+        memory[7] = 32'h27E20000;
         memory[11] = 32'd1; 
         
         
